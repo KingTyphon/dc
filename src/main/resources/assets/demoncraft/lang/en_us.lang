@@ -1,0 +1,43 @@
+itemGroup.demoncrafttab=§5Demon Craft
+
+
+key.categories.slayer=DemonCraft
+
+item.ingot_scarlet_crimson.name=Nichirin Ingot
+item.token_slayer.name=Slayer Token
+
+item.wood_katana.name=Training Sword
+item.base_katana.name=Nichirin Sword
+
+item.mitsuri.name=Mitsuri Blade
+item.kusanagi.name=Kusanagi Blade
+item.tokito.name=Tokito Blade
+item.hashira.name=Rengoku Blade
+item.poison_katana.name=Poison Blade
+item.ice_katana.name=Ice Blade
+item.blue_katana.name=Dusk Blade
+item.zenitsu_blade.name=Zenitsu Blade
+item.tengen_blade.name=Tengen Blade
+item.fire_sword.name=Flame Blade
+item.tanjiro.name=Tanjiro's Sword
+item.water_katana.name=Water Blade
+item.mist_blade.name=Mist Blade
+item.lava_katana.name=Lava Blade
+item.sword_dildo.name=Dildo Sword
+item.lighting_blade.name=Lighting Blade
+item.moon_katana.name=Moon Blade
+item.inosuke_sword.name=Inosuke's Sword
+item.kajisword.name=Kaji's Event Sword
+item.sound_sword.name=Sound Sword
+item.insect_sword.name=Insect Sword
+item.guts_sword.name=Gut's Sword
+item.wind_hashira.name=Wind Sword
+
+
+entity.human.name=Human
+entity.demon.name=Demon
+
+
+
+
+

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+
+  "pattern": [
+    "  #",
+    " # ",
+    "Z  "
+  ],
+  "key": {
+    "#": [{
+      "item": "demoncraft:ingot_scarlet_crimson"
+    }],
+    "Z": [
+      {
+        "item": "minecraft:stick"
+      }]},
+  "result": {
+    "item": "demoncraft:base_katana",
+    "count": 1
+  }}
