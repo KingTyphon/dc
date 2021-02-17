@@ -1,9 +1,11 @@
 package net.util.capabilities.slayer;
 
+import net.minecraftforge.common.capabilities.Capability;
 import net.util.capabilities.slayer.ISlayerCapability;
 
 public class SlayerCapability implements ISlayerCapability {
-  private int breath=0;
+
+  private int breath;
 
   @Override
   public int getBreath(){
@@ -12,9 +14,6 @@ public class SlayerCapability implements ISlayerCapability {
   @Override
   public void setBreath(int breath) {
     this.breath = breath;
-
-    if(this.breath < 0)
-      this.breath = 0;
   }
   @Override
   public boolean isSlayer() {

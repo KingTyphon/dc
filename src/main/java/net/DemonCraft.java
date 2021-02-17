@@ -15,6 +15,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.proxy.CommonProxy;
 import net.util.capabilities.IStorage;
+import net.util.capabilities.slayer.ISlayerCapability;
 import net.util.capabilities.slayer.SlayerCapability;
 import net.util.handlers.Reference;
 import net.util.handlers.RenderHandler;
@@ -35,7 +36,7 @@ public class DemonCraft
         Keybinds.register();
         EntityInit.registerEntities();
         RenderHandler.registerEntityRenderers();
-        CapabilityManager.INSTANCE.register(SlayerCapability.class, new IStorage(), SlayerCapability::new);
+        CapabilityManager.INSTANCE.register(ISlayerCapability.class, new IStorage(), SlayerCapability::new);
 
         MinecraftForge.EVENT_BUS.register(new KeyInputHandler());
     }

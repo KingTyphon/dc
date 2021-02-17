@@ -6,16 +6,18 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.util.capabilities.slayer.ISlayerCapability;
+import net.util.capabilities.slayer.SlayerCapability;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class SlayerProvider implements ICapabilitySerializable<NBTBase>{
 
     @CapabilityInject(ISlayerCapability.class)
     public static final Capability<ISlayerCapability> Breath_CAP= null;
+    private final ISlayerCapability instance = Breath_CAP.getDefaultInstance();
 
-
-    private ISlayerCapability instance = Breath_CAP.getDefaultInstance();
-
-
+    @Nonnull
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing)
     {
@@ -24,10 +26,11 @@ public class SlayerProvider implements ICapabilitySerializable<NBTBase>{
 
     }
 
-
+    @Nullable
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-        if (capability == Breath_CAP && facing == null) Breath_CAP.<T>cast(this.instance);
+        if (capability == SlayerProvider.Breath_CAP)
+            return Breath_CAP.cast(instance);
         return null;
     }
 
