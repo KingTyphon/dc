@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [128, 128],
 	"textures": {
-		"6": "demoncraft:items/insecth"
+		"6": "demoncraft:items/insect"
 	},
 	"elements": [
 		{
@@ -3279,20 +3279,22 @@
 			"scale": [0.8, 1.05, 0.78]
 		},
 		"firstperson_righthand": {
+			"rotation": [-15, 0, 0],
 			"translation": [0, 2.75, 0],
 			"scale": [0.8, 1.09, 0.7]
 		},
 		"firstperson_lefthand": {
+			"rotation": [-15, 0, 0],
 			"translation": [0, 2.75, 0],
 			"scale": [0.8, 1.09, 0.7]
 		},
 		"ground": {
-			"translation": [0, 6.25, 0],
+			"rotation": [-90, 0, 0],
 			"scale": [1, 1.1, 0.78]
 		},
 		"gui": {
 			"rotation": [100, 40, -97],
-			"translation": [-3, -2.75, 1],
+			"translation": [-2.75, -1.5, 1],
 			"scale": [0.89, 0.89, 0.67]
 		},
 		"fixed": {

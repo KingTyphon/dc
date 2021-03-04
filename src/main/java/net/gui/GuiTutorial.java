@@ -15,8 +15,8 @@ public class GuiTutorial extends GuiScreen {
 
     final ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/gui/maingui.png");
 
-    int guiWidth = 256;
-    int guiHeight = 256;
+    int guiWidth = 16;
+    int guiHeight = 16;
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partials) {
@@ -24,9 +24,7 @@ public class GuiTutorial extends GuiScreen {
         Minecraft.getMinecraft().renderEngine.bindTexture(texture);
         int centerX = (width / 2) - guiWidth / 2;
         int centerY = (height / 2) - guiHeight / 2;
-        drawTexturedModalRect(centerX, centerY, 0, 0, guiWidth, guiHeight);
-        drawString(fontRenderer, "Demon Craft", centerX, centerY, 0xFFFFFF);
-        super.drawScreen(mouseX, mouseY, partials);
+        drawTexturedModalRect(centerX, centerY, 0, 0, guiWidth, guiHeight);////
     }
 
     @Override

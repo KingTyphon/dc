@@ -1,4 +1,4 @@
-package world.generators;
+package net.world.generators;
 
 public class WorldGenAluminiumTree {
 }

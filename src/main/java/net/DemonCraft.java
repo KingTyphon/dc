@@ -1,6 +1,7 @@
 package net;
 
 import net.creativetabs.DemonCraftTab;
+import net.gui.GuiOverlayMoves;
 import net.init.EntityInit;
 import net.keys.KeyInputHandler;
 import net.minecraft.creativetab.CreativeTabs;
@@ -19,6 +20,7 @@ import net.util.capabilities.slayer.ISlayerCapability;
 import net.util.capabilities.slayer.SlayerCapability;
 import net.util.handlers.Reference;
 import net.util.handlers.RenderHandler;
+import net.world.Events;
 
 @Mod(modid = Reference.MODID, name = Reference.NAME, version = Reference.VERSION)
 public class DemonCraft
@@ -39,9 +41,13 @@ public class DemonCraft
         CapabilityManager.INSTANCE.register(ISlayerCapability.class, new IStorage(), SlayerCapability::new);
 
         MinecraftForge.EVENT_BUS.register(new KeyInputHandler());
+
     }
     @EventHandler
-    public static void init(FMLInitializationEvent event) {}
+    public static void init(FMLInitializationEvent event) {
+        MinecraftForge.EVENT_BUS.register(new Events());
+        MinecraftForge.EVENT_BUS.register(new GuiOverlayMoves());
+    }
     @EventHandler
     public static void postInit(FMLPostInitializationEvent event) {
 

@@ -1,15 +1,15 @@
 [
 {
-  "modid": "examplemod",
-  "name": "Example Mod",
-  "description": "Example placeholder mod.",
-  "version": "${version}",
-  "mcversion": "${mcversion}",
+  "modid": "demoncraft",
+  "name": "Demon Craft",
+  "description": "This was built for the Demon Slayer related server.",
+  "version": "1.8",
+  "mcversion": "1.12.2",
   "url": "",
   "updateUrl": "",
-  "authorList": ["ExampleDude"],
-  "credits": "The Forge and FML guys, for making this example",
-  "logoFile": "",
+  "authorList": ["King Typhon", "Image"],
+  "credits": "Authored by KingTyphon and Image, Textured by Modelers and Creative lead Kuroki with honorable mention of JustMe, based on the Manga Demon Slayer by Koyoharu Gotouge.",
+  "logoFile": "/demoncraft_Logo.png",
   "screenshots": [],
   "dependencies": []
 }

@@ -1,7 +1,7 @@
 itemGroup.demoncrafttab=§5Demon Craft
 
 
-key.categories.slayer=DemonCraft
+key.categories.slayer=Demon Craft
 
 item.ingot_scarlet_crimson.name=Nichirin Ingot
 item.token_slayer.name=Slayer Token
@@ -27,12 +27,13 @@ item.sword_dildo.name=Dildo Sword
 item.lighting_blade.name=Lighting Blade
 item.moon_katana.name=Moon Blade
 item.inosuke_sword.name=Inosuke's Sword
-item.kajisword.name=Kaji's Event Sword
+item.kajisword.name=Shadow Event Sword
 item.sound_sword.name=Sound Sword
-item.insect_sword.name=Insect Sword
+item.insect_hashira.name=Insect Sword
 item.guts_sword.name=Gut's Sword
 item.wind_hashira.name=Wind Sword
-
+item.snake_hashira.name=Snake Sword
+item.water_hashira.name=Water Sword
 
 entity.human.name=Human
 entity.demon.name=Demon

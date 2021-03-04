@@ -10,7 +10,9 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.util.IHasModel;
 import net.util.capabilities.SlayerProvider;
@@ -40,12 +42,12 @@ public class FireSwords extends ItemSword implements IHasModel{
         fireball.accelerationX = aim.x * 0.1; fireball.accelerationY = aim.y * 0.1; fireball.accelerationZ = aim.z * 0.1;
         worldIn.spawnEntity(fireball);
         }
-        if (playerIn.getCapability(SlayerProvider.Breath_CAP, null).getBreath() == 0){
-                playerIn.sendMessage(new TextComponentString("You Have To Learn Fire Breathing To Use This Sword"));
+            else if(playerIn.getCapability(SlayerProvider.Breath_CAP, null).getBreath()>2){
+                playerIn.sendMessage(new TextComponentString("You Have To Learn ")
+                        .appendSibling(new TextComponentString("Fire Breathing").setStyle(new Style().setColor(TextFormatting.DARK_RED)))
+                        .appendSibling(new TextComponentString(" To Use This Sword.")));
             }
-        if (playerIn.getCapability(SlayerProvider.Breath_CAP, null).getBreath() == 2 - 17 + 1){
-                playerIn.sendMessage(new TextComponentString("You Have To Learn Fire Breathing To Use This Sword"));
-        }}
+        }
         item.damageItem(0, playerIn);
         return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, item); }
 

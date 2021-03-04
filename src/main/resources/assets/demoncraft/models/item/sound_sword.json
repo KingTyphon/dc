@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"1": "demoncraft:items/windsword"
+		"1": "demoncraft:items/sound"
 	},
 	"elements": [
 		{
@@ -237,15 +237,17 @@
 			"scale": [1, 1.25, 0.78]
 		},
 		"firstperson_righthand": {
+			"rotation": [-15, 0, 0],
 			"translation": [0, 3, 0],
 			"scale": [1, 1.25, 0.78]
 		},
 		"firstperson_lefthand": {
+			"rotation": [-15, 0, 0],
 			"translation": [0, 2.75, 0],
 			"scale": [1, 1.25, 0.78]
 		},
 		"ground": {
-			"translation": [0, 10, 0],
+			"rotation": [-90, 0, 0],
 			"scale": [1, 1.1, 0.78]
 		},
 		"gui": {
