@@ -1,8 +1,5 @@
 package net.util.capabilities.slayer;
 
-import net.minecraftforge.common.capabilities.Capability;
-import net.util.capabilities.slayer.ISlayerCapability;
-
 public class SlayerCapability implements ISlayerCapability {
 
   private int breath;

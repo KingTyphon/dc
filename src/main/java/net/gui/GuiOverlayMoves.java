@@ -1,11 +1,11 @@
 package net.gui;
 
+import net.util.handlers.Reference;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.util.handlers.Reference;
 
 public class GuiOverlayMoves extends Gui {
 

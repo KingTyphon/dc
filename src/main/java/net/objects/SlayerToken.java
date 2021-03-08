@@ -2,31 +2,34 @@ package net.objects;
 
 
 import net.DemonCraft;
+import net.init.ItemInit;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.util.IHasModel;
 import net.util.capabilities.SlayerProvider;
 
-import javax.annotation.Nullable;
-import java.awt.*;
 
-
-public class SlayerToken extends ItemBase{
+public class SlayerToken extends Item implements IHasModel{
 
 
 
     public SlayerToken(String name) {
-        super(name);
+        setUnlocalizedName(name);
+        setRegistryName(name);
+        setCreativeTab(DemonCraft.demoncrafttab);
+        ItemInit.ITEMS.add(this);
     }public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-        ItemStack item = playerIn.getHeldItem(handIn);
+        ItemStack stack = playerIn.getHeldItem(handIn);
         if (!worldIn.isRemote) {
+            playerIn.getHeldItem(handIn).shrink(1);
             int min = 1;
             int max = 16;
             int range = max - min + 1;
@@ -98,8 +101,7 @@ public class SlayerToken extends ItemBase{
 
 
         }
-            return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, item);
-
+        return ActionResult.newResult(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
     }
 
 

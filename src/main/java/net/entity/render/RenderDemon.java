@@ -15,12 +15,12 @@ public class RenderDemon extends RenderLiving<EntityDemon>
         super(manager, new ModelDemon(), 0.5F);
     }
     @Override
-    protected ResourceLocation getEntityTexture(net.entity.EntityDemon entity) {
+    protected ResourceLocation getEntityTexture(EntityDemon entity) {
         return TEXTURES;
     }
 
     @Override
-    protected void applyRotations(net.entity.EntityDemon entityLiving, float p_77043_2_, float rotationYaw, float partialTicks)
+    protected void applyRotations(EntityDemon entityLiving, float p_77043_2_, float rotationYaw, float partialTicks)
     {
         super.applyRotations(entityLiving, p_77043_2_, rotationYaw, partialTicks);
     }

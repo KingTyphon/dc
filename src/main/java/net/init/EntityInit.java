@@ -3,12 +3,10 @@ package net.init;
 import net.DemonCraft;
 import net.entity.EntityDemon;
 import net.entity.EntityHuman;
+import net.util.handlers.Reference;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
-import net.util.handlers.Reference;
-
-import java.sql.Ref;
 
 
 public class EntityInit {

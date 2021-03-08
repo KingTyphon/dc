@@ -1,16 +1,16 @@
 package net.init;
 
+import net.objects.*;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraftforge.common.util.EnumHelper;
 import net.objects.*;
+import net.util.handlers.Reference;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static net.util.handlers.Reference.MODID;
 
 
 public class ItemInit {
@@ -23,7 +23,7 @@ public class ItemInit {
     //Material
     public static final Item.ToolMaterial TOOL_SCARLET_CRIMSON = EnumHelper.addToolMaterial("tool_scarlet_crimson",3, 0, 8.0F, 3.0F, 10);
     public static final Item.ToolMaterial DILDO = EnumHelper.addToolMaterial("dildo", 999, 0 , 10.0F, 1000000000.0F, 10);
-    public static final ItemArmor.ArmorMaterial HAORI = EnumHelper.addArmorMaterial("haori", MODID + "haori", 0, new int[]{3, 6, 8, 3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 2.0F);
+    public static final ItemArmor.ArmorMaterial HAORI = EnumHelper.addArmorMaterial("haori", Reference.MODID + "haori", 0, new int[]{3, 6, 8, 3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 2.0F);
 
     //Craftables
     public static final Item scarlet_crimson_ingot = new ItemBase("ingot_scarlet_crimson");

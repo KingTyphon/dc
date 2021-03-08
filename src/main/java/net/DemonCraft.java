@@ -1,7 +1,10 @@
 package net;
 
-import net.creativetabs.DemonCraftTab;
 import net.gui.GuiOverlayMoves;
+import net.util.capabilities.slayer.SlayerCapability;
+import net.util.handlers.Reference;
+import net.util.handlers.RenderHandler;
+import net.creativetabs.DemonCraftTab;
 import net.init.EntityInit;
 import net.keys.KeyInputHandler;
 import net.minecraft.creativetab.CreativeTabs;
@@ -17,9 +20,6 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.proxy.CommonProxy;
 import net.util.capabilities.IStorage;
 import net.util.capabilities.slayer.ISlayerCapability;
-import net.util.capabilities.slayer.SlayerCapability;
-import net.util.handlers.Reference;
-import net.util.handlers.RenderHandler;
 import net.world.Events;
 
 @Mod(modid = Reference.MODID, name = Reference.NAME, version = Reference.VERSION)

@@ -6,7 +6,6 @@ import net.minecraft.nbt.NBTTagInt;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.util.capabilities.slayer.ISlayerCapability;
-import net.util.capabilities.slayer.SlayerCapability;
 
 public class IStorage implements Capability.IStorage<ISlayerCapability>{
 

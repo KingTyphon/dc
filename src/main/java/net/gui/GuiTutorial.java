@@ -1,11 +1,10 @@
 package net.gui;
 
-import net.DemonCraft;
+import net.util.handlers.Reference;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.ResourceLocation;
-import net.util.handlers.Reference;
 
 import java.io.IOException;
 

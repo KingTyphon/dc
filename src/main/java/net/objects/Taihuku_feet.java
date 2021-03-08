@@ -2,14 +2,13 @@ package net.objects;
 
 import net.DemonCraft;
 import net.init.ItemInit;
-import net.minecraft.creativetab.CreativeTabs;
+import net.util.IHasModel;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.util.IHasModel;
 
 public class Taihuku_feet extends ItemArmor implements IHasModel {
     public Taihuku_feet(ItemArmor.ArmorMaterial material, int renderIndex, EntityEquipmentSlot armorType, String Name) {

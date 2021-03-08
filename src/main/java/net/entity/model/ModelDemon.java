@@ -1,13 +1,11 @@
 package net.entity.model;
 
-import net.entity.EntityDemon;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.client.model.ModelPlayer;
 
 public class ModelDemon extends ModelBase {
     public ModelRenderer field_178736_x;

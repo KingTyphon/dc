@@ -1,18 +1,27 @@
 package net.world;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.util.capabilities.SlayerProvider;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.PositionedSoundRecord;
-import net.minecraft.client.gui.GuiMainMenu;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.util.capabilities.SlayerProvider;
+import net.util.capabilities.slayer.ISlayerCapability;
+import net.util.handlers.Reference;
 
 public class Events {
 
     Minecraft mc = Minecraft.getMinecraft();
     @SubscribeEvent
+    public void onPlayerClone(PlayerEvent.Clone event){
+        EntityPlayer player = event.getEntityPlayer();
+        ISlayerCapability breathOld = event.getOriginal().getCapability(SlayerProvider.Breath_CAP, null);
+        ISlayerCapability breathNew = player.getCapability(SlayerProvider.Breath_CAP, null);
+        breathNew.setBreath(breathOld.getBreath());
+    }    @SubscribeEvent
     public void onRenderGameOverlay(RenderGameOverlayEvent event) {
         if (!event.isCancelable() && event.getType() == RenderGameOverlayEvent.ElementType.EXPERIENCE) {
 
@@ -24,7 +33,11 @@ public class Events {
                 mc.ingameGUI.drawTexturedModalRect(posY + 18, posY, 20, 0, 16, 16);
                 mc.ingameGUI.drawTexturedModalRect(posX + 36, posY, 41, 0, 16, 16);
             }
-        }}}
+
+        }
+
+    }
+}
 
 
 

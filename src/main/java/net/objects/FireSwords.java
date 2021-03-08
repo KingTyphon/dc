@@ -1,6 +1,7 @@
 package net.objects;
 
 import net.DemonCraft;
+import net.util.capabilities.SlayerProvider;
 import net.init.ItemInit;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityLargeFireball;
@@ -15,8 +16,6 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.util.IHasModel;
-import net.util.capabilities.SlayerProvider;
-import net.util.capabilities.slayer.SlayerCapability;
 
 public class FireSwords extends ItemSword implements IHasModel{
     public FireSwords(String name, ToolMaterial material){

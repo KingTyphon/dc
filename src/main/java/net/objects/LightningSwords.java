@@ -19,7 +19,9 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class LightningSwords extends ItemSword implements IHasModel{
-
+    double tmpX,tmpZ;
+	double prePosX,prePosY,prePosZ;
+    double HprePosX,HprePosY,HprePosZ;
 
     public LightningSwords(String name, ToolMaterial material){
         super(material);
@@ -47,7 +49,9 @@ public class LightningSwords extends ItemSword implements IHasModel{
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
         playerIn.getCooldownTracker().setCooldown(this, 60);
         ItemStack item = playerIn.getHeldItem(handIn);
-        Vec3d aim = playerIn.getLookVec();
+        Vec3d look = playerIn.getLookVec();
+        this.tmpX = playerIn.motionX;
+        this.tmpZ = playerIn.motionZ;
         if(!worldIn.isRemote){
         RayTraceResult result = this.rayTrace(worldIn,playerIn, false);
         int x = result.getBlockPos().getX();

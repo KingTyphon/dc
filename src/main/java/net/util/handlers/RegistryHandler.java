@@ -1,6 +1,5 @@
 package net.util.handlers;
 
-import net.init.EntityInit;
 import net.init.ItemInit;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;

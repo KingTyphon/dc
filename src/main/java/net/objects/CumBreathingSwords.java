@@ -1,7 +1,9 @@
 package net.objects;
 
-import com.google.common.collect.Multimap;
 import net.DemonCraft;
+import com.google.common.collect.Multimap;
+import net.util.IHasModel;
+import net.util.capabilities.SlayerProvider;
 import net.init.ItemInit;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -16,8 +18,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
-import net.util.IHasModel;
-import net.util.capabilities.SlayerProvider;
 
 public class CumBreathingSwords extends ItemSword implements IHasModel {
     public CumBreathingSwords(String name, ToolMaterial material){

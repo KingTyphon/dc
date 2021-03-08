@@ -6,7 +6,6 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.util.capabilities.slayer.ISlayerCapability;
-import net.util.capabilities.slayer.SlayerCapability;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

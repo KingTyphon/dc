@@ -1,22 +1,19 @@
 package net.objects;
 
 import net.DemonCraft;
+import net.util.capabilities.SlayerProvider;
 import net.init.ItemInit;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemArmor;
 import net.util.IHasModel;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
-import net.util.capabilities.SlayerProvider;
 
 import java.util.logging.Logger;
 
