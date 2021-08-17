@@ -13,12 +13,11 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.util.IHasModel;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class LightningSwords extends ItemSword implements IHasModel{
+public class LightningSwords extends ItemSword {
     double tmpX,tmpZ;
 	double prePosX,prePosY,prePosZ;
     double HprePosX,HprePosY,HprePosZ;
@@ -39,11 +38,6 @@ public class LightningSwords extends ItemSword implements IHasModel{
     @Override
     protected RayTraceResult rayTrace(World worldIn, EntityPlayer playerIn, boolean useLiquids) {
         return super.rayTrace(worldIn, playerIn, useLiquids);
-    }
-
-
-    public void registerModels() {
-        DemonCraft.proxy.registerItemRenderer(this, 0, "inventory");
     }
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {

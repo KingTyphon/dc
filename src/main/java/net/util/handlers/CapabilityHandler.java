@@ -9,17 +9,21 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.util.capabilities.slayer.ISlayerCapability;
+import net.util.capabilities.techniquecapability.TechProvider;
 
 
 @Mod.EventBusSubscriber
 public class CapabilityHandler {
 
     public static final ResourceLocation Breath_CAP = new ResourceLocation(Reference.MODID, "breath");
+    public static final ResourceLocation TECH_CAP = new ResourceLocation(Reference.MODID, "tech");
 
 
     @SubscribeEvent
     public static void attachCapability(AttachCapabilitiesEvent<Entity> event) {
         if (event.getObject() instanceof EntityPlayer) {
-            event.addCapability(new ResourceLocation(Reference.MODID, "breath"), new SlayerProvider());}
+            event.addCapability(new ResourceLocation(Reference.MODID, "breath"), new SlayerProvider());
+            event.addCapability(new ResourceLocation(Reference.MODID, "tech"), new TechProvider());
+        }
     }
 }

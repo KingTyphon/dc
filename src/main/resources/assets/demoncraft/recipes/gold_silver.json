@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+
+  "pattern": [
+    "#"
+  ],
+  "key": {
+    "#": [{
+      "item": "demoncraft:gold_coin"
+    }]},
+  "result": {
+    "item": "demoncraft:silver_coin",
+    "count": 9
+  }}

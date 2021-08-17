@@ -17,5 +17,6 @@ public class IStorage implements Capability.IStorage<ISlayerCapability>{
     public void readNBT(Capability<ISlayerCapability> capability, ISlayerCapability instance, EnumFacing side, NBTBase nbt)
     {
         instance.setBreath(((NBTPrimitive) nbt).getInt());
+
     }
 }

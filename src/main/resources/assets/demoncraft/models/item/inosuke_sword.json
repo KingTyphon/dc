@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"1": "demoncraft:items/beast"
+		"1": "demoncraft:items/inosuke"
 	},
 	"elements": [
 		{
@@ -1009,23 +1009,25 @@
 	],
 	"display": {
 		"thirdperson_righthand": {
-			"translation": [0, 2.25, 0.5],
-			"scale": [1, 1.1, 0.78]
+			"translation": [0, 2.5, 0.5],
+			"scale": [1, 1.2, 0.75]
 		},
 		"thirdperson_lefthand": {
 			"translation": [0, 2.5, 0.5],
-			"scale": [1, 1.1, 0.78]
+			"scale": [1, 1.2, 0.75]
 		},
 		"firstperson_righthand": {
+			"rotation": [-15, 0, 0],
 			"translation": [0, 2.75, 0],
 			"scale": [1, 1.19375, 0.63742]
 		},
 		"firstperson_lefthand": {
+			"rotation": [-15, 0, 0],
 			"translation": [0, 2.75, 0],
 			"scale": [1, 1.19375, 0.63742]
 		},
 		"ground": {
-			"translation": [0, 10, 0],
+			"rotation": [90, 0, 0],
 			"scale": [1, 1.1, 0.78]
 		},
 		"gui": {

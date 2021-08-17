@@ -2,7 +2,6 @@ package net.objects;
 
 import net.DemonCraft;
 import com.google.common.collect.Multimap;
-import net.util.IHasModel;
 import net.util.capabilities.SlayerProvider;
 import net.init.ItemInit;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -19,7 +18,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
-public class CumBreathingSwords extends ItemSword implements IHasModel {
+public class CumBreathingSwords extends ItemSword {
     public CumBreathingSwords(String name, ToolMaterial material){
         super(material);
         setUnlocalizedName(name);
@@ -27,9 +26,7 @@ public class CumBreathingSwords extends ItemSword implements IHasModel {
         setCreativeTab(DemonCraft.demoncrafttab);
         ItemInit.ITEMS.add(this);
     }
-    public void registerModels() {
-        DemonCraft.proxy.registerItemRenderer(this, 0, "inventory");
-    }
+
     public Multimap<String, AttributeModifier> getItemAttributeModifiers(EntityEquipmentSlot equipmentSlot)
     {
         Multimap<String, AttributeModifier> multimap = super.getItemAttributeModifiers(equipmentSlot);

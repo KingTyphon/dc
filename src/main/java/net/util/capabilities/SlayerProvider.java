@@ -39,7 +39,6 @@ public class SlayerProvider implements ICapabilitySerializable<NBTBase>{
     {
 
         return Breath_CAP.getStorage().writeNBT(Breath_CAP, this.instance, null);
-
     }
 
 

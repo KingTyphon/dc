@@ -9,22 +9,18 @@ item.token_slayer.name=Slayer Token
 item.wood_katana.name=Training Sword
 item.base_katana.name=Nichirin Sword
 
-item.mitsuri.name=Mitsuri Blade
-item.kusanagi.name=Kusanagi Blade
-item.tokito.name=Tokito Blade
-item.hashira.name=Rengoku Blade
-item.poison_katana.name=Poison Blade
-item.ice_katana.name=Ice Blade
-item.blue_katana.name=Dusk Blade
-item.zenitsu_blade.name=Zenitsu Blade
+item.mitsuri.name=Mitsuri's Sword
+item.kusanagi.name=Kusanagi
+item.tokito.name=Tokito's Sword
+item.hashira.name=Rengoku's Sword
+item.zenitsu_blade.name=Zenitsu's Sword
 item.tengen_blade.name=Tengen Blade
-item.fire_sword.name=Flame Blade
+item.fire_sword.name=Flame Sword
 item.tanjiro.name=Tanjiro's Sword
-item.water_katana.name=Water Blade
-item.mist_blade.name=Mist Blade
-item.lava_katana.name=Lava Blade
+item.water_katana.name=Water Sword
+item.mist_blade.name=Mist Sword
 item.sword_dildo.name=Dildo Sword
-item.lighting_blade.name=Lighting Blade
+item.lighting_blade.name=Lighting Sword
 item.moon_katana.name=Moon Blade
 item.inosuke_sword.name=Inosuke's Sword
 item.kajisword.name=Shadow Event Sword
@@ -32,8 +28,41 @@ item.sound_sword.name=Sound Sword
 item.insect_hashira.name=Insect Sword
 item.guts_sword.name=Gut's Sword
 item.wind_hashira.name=Wind Sword
-item.snake_hashira.name=Snake Sword
+item.snake_hashira.name=Obanai's Sword
 item.water_hashira.name=Water Sword
+item.zk_sword.name=ZK's Sword
+item.wind_generic.name=Wind Sword
+item.thunder_generic.name=Thunder Sword
+item.sun_generic.name=Sun Sword
+item.stone_hashira.name=Gyomei's Blade
+item.snake_sword.name=Snake Sword
+item.serpent_generic.name=Serpent Sword
+item.mist_sword2.name=Mist Sword
+item.love_sword3.name=Love Sword
+item.love_generic2.name=Love Sword
+item.insect_generic.name=Insect Sword
+item.generic_wind2.name=Wind Sword
+item.generic_water2.name=Water Sword
+item.flower_sword.name=Flower Sword
+item.flame_sword2.name=Flame Sword
+item.generic_love.name=Love Sword
+item.gold_coin.name=Gold Coin
+item.silver_coin.name=Silver Coin
+item.bronze_coin.name=Bronze Coin
+item.sushi.name=Sushi
+item.beer.name=Beer
+item.slayer_pants.name= Demon Corps Pants
+item.slayer_chest.name= Demon Corps Chest
+item.slayer_feet.name= Demon Corps Shoes
+item.ramen.name=Ramen
+
+
+tile.wood_building.name=House Exterior
+
+
+
+
+
 
 entity.human.name=Human
 entity.demon.name=Demon

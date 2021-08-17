@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"1": "demoncraft:items/lightning sword",
-		"particle": "demoncraft:items/lightning sword"
+		"1": "demoncraft:items/lightningsword",
+		"particle": "demoncraft:items/lightningsword"
 	},
 	"elements": [
 		{
@@ -98,9 +98,9 @@
 			}
 		},
 		{
-			"from": [7.6999, -0.27729, 7.56363],
-			"to": [8.26693, 6.00044, 9.32534],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8.13967, 8.41898]},
+			"from": [7.75391, -0.24735, 7.67164],
+			"to": [8.18591, 6.03038, 9.21734],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8.054, 8.16961, 8.52698]},
 			"faces": {
 				"north": {"uv": [4, 0, 4.5, 3], "texture": "#1"},
 				"east": {"uv": [3, 0, 4, 3], "texture": "#1"},
@@ -111,9 +111,9 @@
 			}
 		},
 		{
-			"from": [7.6459, -0.61938, 7.50963],
-			"to": [8.32093, 0.25815, 9.37934],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8.13967, 8.41898]},
+			"from": [7.72891, -0.62488, 7.64664],
+			"to": [8.21091, 0.25265, 9.24234],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8.108, 8.13417, 8.58099]},
 			"faces": {
 				"north": {"uv": [13, 9.5, 13.5, 10], "texture": "#1"},
 				"east": {"uv": [6.5, 10, 7.5, 10.5], "texture": "#1"},
@@ -1027,7 +1027,7 @@
 		},
 		"thirdperson_lefthand": {
 			"translation": [0, 2.75, 0.5],
-			"scale": [0.8, 1.05, 0.78]
+			"scale": [0.8, 1.05, 0.8]
 		},
 		"firstperson_righthand": {
 			"rotation": [-15, 0, 0],

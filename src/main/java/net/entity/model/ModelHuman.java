@@ -105,34 +105,7 @@ public class ModelHuman extends ModelBase {
         this.field_178720_f.rotateAngleY = netHeadYaw * 0.017453292F;
         this.field_78116_c.rotateAngleX = headPitch * 0.017453292F;
         this.field_178720_f.rotateAngleX = headPitch * 0.017453292F;
-        float f = MathHelper.sin(this.swingProgress * (float)Math.PI);
-        float f1 = MathHelper.sin((1.0F - (1.0F - this.swingProgress) * (1.0F - this.swingProgress)) * (float)Math.PI);
-        this.field_178723_h.rotateAngleZ = 0.0F;
-        this.field_178724_i.rotateAngleZ = 0.0F;
-        this.field_178723_h.rotateAngleY = -(0.1F - f * 0.6F);
-        this.field_178724_i.rotateAngleY = 0.1F - f * 0.6F;
-        this.field_178723_h.rotateAngleX = -((float)Math.PI / 2F);
-        this.field_178724_i.rotateAngleX = -((float)Math.PI / 2F);
-        this.field_178723_h.rotateAngleX -= f * 1.2F - f1 * 0.4F;
-        this.field_178724_i.rotateAngleX -= f * 1.2F - f1 * 0.4F;
-        this.field_178723_h.rotateAngleZ += MathHelper.cos(ageInTicks * 0.09F) * 0.05F + 0.05F;
-        this.field_178724_i.rotateAngleZ -= MathHelper.cos(ageInTicks * 0.09F) * 0.05F + 0.05F;
-        this.field_178723_h.rotateAngleX += MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
-        this.field_178724_i.rotateAngleX -= MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
-
-        this.field_178732_b.rotateAngleZ = 0.0F;
-        this.field_178734_a.rotateAngleZ = 0.0F;
-        this.field_178732_b.rotateAngleY = -(0.1F - f * 0.6F);
-        this.field_178734_a.rotateAngleY = 0.1F - f * 0.6F;
-        this.field_178732_b.rotateAngleX = -((float)Math.PI / 2F);
-        this.field_178734_a.rotateAngleX = -((float)Math.PI / 2F);
-        this.field_178732_b.rotateAngleX -= f * 1.2F - f1 * 0.4F;
-        this.field_178734_a.rotateAngleX -= f * 1.2F - f1 * 0.4F;
-        this.field_178732_b.rotateAngleZ += MathHelper.cos(ageInTicks * 0.09F) * 0.05F + 0.05F;
-        this.field_178734_a.rotateAngleZ -= MathHelper.cos(ageInTicks * 0.09F) * 0.05F + 0.05F;
-        this.field_178732_b.rotateAngleX += MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
-        this.field_178734_a.rotateAngleX -= MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
-    }
+           }
 
 
 
