@@ -1,7 +1,7 @@
 package net.entity.render;
 
-import net.entity.EntityDemon;
-import net.entity.model.ModelDemon;
+import net.entity.Demon.EntityDemon;
+import net.entity.Demon.ModelDemon;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;

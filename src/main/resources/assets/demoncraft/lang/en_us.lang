@@ -5,6 +5,7 @@ key.categories.slayer=Demon Craft
 
 item.ingot_scarlet_crimson.name=Nichirin Ingot
 item.token_slayer.name=Slayer Token
+item.token_demon.name=Demon Token
 
 item.wood_katana.name=Training Sword
 item.base_katana.name=Nichirin Sword
@@ -63,7 +64,7 @@ tile.wood_building.name=House Exterior
 
 
 
-
+entity.kyogai.name=Kyogai
 entity.human.name=Human
 entity.demon.name=Demon
 

@@ -9,4 +9,5 @@ public class Reference {
 
     public static final int ENTITY_HUMAN = 120;
     public static final int ENTITY_DEMON = 121;
+    public static final int ENTITY_SHADOWBALL = 122;
 }

@@ -2,6 +2,8 @@ package net.objects;
 
 import net.DemonCraft;
 import net.init.ItemInit;
+import net.minecraft.client.model.ModelBiped;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -22,4 +24,8 @@ public class Taihuku_chest extends ItemArmor{
     public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
         super.onArmorTick(world, player, stack); }
 
+    @Override
+    public ModelBiped getArmorModel(EntityLivingBase entity, ItemStack Stack,EntityEquipmentSlot armorSlot, ModelBiped _default){
+     return super.getArmorModel(entity, Stack, armorSlot, _default);
+    }
 }

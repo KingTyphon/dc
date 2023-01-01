@@ -1,6 +1,7 @@
 package net.util.capabilities.techniquecapability;
 
 import net.minecraft.nbt.NBTBase;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
@@ -9,7 +10,7 @@ import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class TechProvider implements ICapabilitySerializable<NBTBase> {
+public class TechProvider implements ICapabilitySerializable<NBTTagCompound> {
 
     @CapabilityInject(iTechCapability.class)
     public static final Capability<iTechCapability> TECH_CAP= null;
@@ -34,18 +35,18 @@ public class TechProvider implements ICapabilitySerializable<NBTBase> {
 
 
     @Override
-    public NBTBase serializeNBT()
+    public NBTTagCompound serializeNBT()
     {
 
-        return TECH_CAP.getStorage().writeNBT(TECH_CAP, this.instance, null);
+        return (NBTTagCompound) TECH_CAP.getStorage().writeNBT(TECH_CAP, this.instance, null);
     }
 
 
     @Override
-    public void deserializeNBT(NBTBase nbt)
+    public void deserializeNBT(NBTTagCompound nbt)
     {
-
-        TECH_CAP.getStorage().readNBT(TECH_CAP, this.instance, null, nbt);
+        if(TECH_CAP != null){
+        TECH_CAP.getStorage().readNBT(TECH_CAP, this.instance, null, nbt);}
 
     }
 

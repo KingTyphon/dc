@@ -1,0 +1,25 @@
+{
+  "display": {
+    "icon":{
+      "item": "demoncraft:base_katana"
+    },
+    "title": "Mizunoto",
+    "description": "Get to Level 5 as a Slayer.",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+    "criteria": {
+      "requirement": {
+        "trigger": "minecraft:tick",
+        "conditions": {
+          "player": [
+            {
+              "condition":
+            }
+          ]
+        }
+      }
+    }
+}

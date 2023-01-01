@@ -1,6 +1,7 @@
 package net.entity;
 
 
+import net.entity.Demon.EntityDemon;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;

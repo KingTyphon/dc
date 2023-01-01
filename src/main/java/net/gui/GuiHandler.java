@@ -7,6 +7,7 @@ import net.minecraftforge.fml.common.network.IGuiHandler;
 import javax.annotation.Nullable;
 
 public class GuiHandler implements IGuiHandler {
+
     @Nullable
     @Override
     public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
@@ -16,8 +17,8 @@ public class GuiHandler implements IGuiHandler {
     @Nullable
     @Override
     public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
-        if(GuiTutorial.ID == id) {
-            return new GuiTutorial();
+        if(GuiSlayer.ID == id) {
+            return new GuiSlayer();
         }
         return null;
     }

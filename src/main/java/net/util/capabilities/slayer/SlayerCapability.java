@@ -3,17 +3,62 @@ package net.util.capabilities.slayer;
 public class SlayerCapability implements ISlayerCapability {
 
   private int breath;
+  private float mana;
+  private int level;
+  private int xp;
+  private int maxmana;
+
+
+  @Override
+  public int getXP(){
+    return xp;
+  }
+
+  @Override
+  public void levelUp() {
+    int maxXP = 100;
+    if(this.xp == maxXP) {
+      maxXP += 20;
+      this.xp = 0;
+      this.level +=1;
+    }
+  }
+
+  @Override
+  public void setXP(int xp) {
+    this.xp = xp;
+  }
+  @Override
+  public int getLevel(){
+    return level;
+  }
+  @Override
+  public void setLevel(int level) {
+    this.level = level;
+  }
+
+  @Override
+  public float getMana(){
+    return mana;
+  }
+
+  @Override
+  public void setMana(float mana) {this.mana = mana;}
 
   @Override
   public int getBreath(){
     return breath;
   }
+
   @Override
   public void setBreath(int breath) {
     this.breath = breath;
   }
+
   @Override
-  public boolean isSlayer() {
-    return false;
-  }
+  public int getMaxMana() {return maxmana;}
+
+  @Override
+  public void setMaxMana(int maxmana) {this.maxmana = maxmana;}
+
 }

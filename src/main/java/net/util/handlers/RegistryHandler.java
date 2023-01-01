@@ -41,6 +41,7 @@ public class RegistryHandler {
     @Mod.EventHandler
     public static void initRegistries()
     {
+        SoundHandler.registerSounds();
         CraftingRecipes.init();
     }
 }

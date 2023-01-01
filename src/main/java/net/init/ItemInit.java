@@ -8,6 +8,12 @@ import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.objects.*;
+import net.objects.foods.Ramen;
+import net.objects.foods.Sushi;
+import net.objects.swords.CumBreathingSwords;
+import net.objects.swords.FireSwords;
+import net.objects.swords.LightningSwords;
+import net.objects.swords.ShadowSwords;
 import net.util.handlers.Reference;
 
 import java.util.ArrayList;
@@ -47,7 +53,7 @@ public class ItemInit {
     public static final Item blade_lightning = new LightningSwords("lighting_blade" , TOOL_SCARLET_CRIMSON);
     public static final Item blade_moon = new ToolSword("moon_katana" , TOOL_SCARLET_CRIMSON);
     public static final Item sword_sound = new ToolSword("sound_sword" , TOOL_SCARLET_CRIMSON);
-    public static final Item kaji_sword = new ToolSword("kajisword" , TOOL_SCARLET_CRIMSON);
+    public static final Item kaji_sword = new ShadowSwords("kajisword" , TOOL_SCARLET_CRIMSON);
     public static final Item inosuke_katana = new ToolSword("inosuke_sword" , TOOL_SCARLET_CRIMSON);
     public static final Item insect_katana = new ToolSword("insect_hashira" , TOOL_SCARLET_CRIMSON);
     public static final Item hashira_wind = new ToolSword("wind_hashira" , TOOL_SCARLET_CRIMSON);
@@ -82,6 +88,7 @@ public class ItemInit {
     public static final Item beer = new Beer("beer");
 
     //Armor(Temp Not Registered)
+    public static final Item TANJIRO_EARRING = new Tanjuro_earring(HAORI, 104, EntityEquipmentSlot.HEAD, "earring");
     public static final Item TAIHUKU_CHEST = new Taihuku_chest(HAORI, 101, EntityEquipmentSlot.CHEST, "slayer_chest");
     public static final Item TAIHUKU_LEGGINGS = new Taihuku_leggings(HAORI, 102, EntityEquipmentSlot.LEGS, "slayer_pants");
     public static final Item TAIHUKU_FEET = new Taihuku_feet(HAORI, 103, EntityEquipmentSlot.FEET, "slayer_feet");

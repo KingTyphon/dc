@@ -1,0 +1,7 @@
+{
+  "shadow_ambient":{
+    "category": "ambient",
+    "sounds": [{"name":  "demoncraft:shadow_ambient", "stream": false}]
+  }
+
+}
