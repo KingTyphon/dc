@@ -48,6 +48,7 @@ public class EntityHuman extends EntityVillager
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D);
     }
+
     @Override
     public float getEyeHeight(){
         return 1.6F;

@@ -11,9 +11,19 @@ public class TechCapability implements iTechCapability {
     private int speed;
     private int strength;
     private int manaPoint;
+    private int skill;
 
     @Override
-    public int getSp() {return sp;}
+    public int getSkill(){
+        return this.skill;
+    }
+    @Override
+    public void setSkill(int skill){
+        this.skill = skill;
+    }
+
+    @Override
+    public int getSp() {return this.sp;}
 
     @Override
     public void setSp(int sp) {this.sp = sp;}

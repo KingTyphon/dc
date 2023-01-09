@@ -7,12 +7,13 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 
 public class SkillTreeGui extends GuiScreen {
-
-
-    public void drawScreen(){
-
+    EntityPlayer player = Minecraft.getMinecraft().player;
+    @Override
+    public void drawScreen(int mouseX, int mouseY, float partialTicks){
+        drawEntityOnScreen(200, 180, 30, mouseX-200, mouseY-180, player);
     }
     public static void drawEntityOnScreen(int posX, int posY, int scale, float mouseX, float mouseY,
                                           EntityLivingBase ent) {

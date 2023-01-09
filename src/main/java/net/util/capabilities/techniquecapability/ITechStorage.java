@@ -19,6 +19,7 @@ public class ITechStorage implements Capability.IStorage<iTechCapability>{
         tag.setInteger("health", instance.getHealth());
         tag.setInteger("strength", instance.getStrength());
         tag.setInteger("manapoint", instance.getManaPoint());
+        tag.setInteger("skill", instance.getSkill());
         return tag;
     }
     @Override
@@ -29,6 +30,8 @@ public class ITechStorage implements Capability.IStorage<iTechCapability>{
         int speed = ((NBTTagCompound) nbt).getInteger("speed");
         int health = ((NBTTagCompound) nbt).getInteger("health");
         int strength = ((NBTTagCompound) nbt).getInteger("strength");
+        int manapoint = ((NBTTagCompound) nbt).getInteger("manapoint");
+        int skill = ((NBTTagCompound) nbt).getInteger("skill");
 
 
         instance.setTech(tech);
@@ -36,6 +39,7 @@ public class ITechStorage implements Capability.IStorage<iTechCapability>{
         instance.setHealth(health);
         instance.setSpeed(speed);
         instance.setStrength(strength);
-
+        instance.setManaPoint(manapoint);
+        instance.setSkill(skill);
     }
 }

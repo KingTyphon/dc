@@ -3,6 +3,8 @@ package net.util.capabilities.techniquecapability;
 import java.util.ArrayList;
 
 public interface iTechCapability {
+    public int getSkill();
+    public void setSkill(int skill);
     public int getTech();
     public void setTech(int tech);
     public int getSp();

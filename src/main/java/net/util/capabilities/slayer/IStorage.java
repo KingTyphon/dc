@@ -16,6 +16,7 @@ public class IStorage implements Capability.IStorage<ISlayerCapability>{
         tag.setFloat("mana", instance.getMana());
         tag.setInteger("breath", instance.getBreath());
         tag.setInteger("maxmana", instance.getMaxMana());
+        tag.setInteger("maxxp", instance.getMaxXp());
         return tag;
     }
     @Override
@@ -26,12 +27,14 @@ public class IStorage implements Capability.IStorage<ISlayerCapability>{
         int xp = ((NBTTagCompound) nbt).getInteger("xp");
         float mana = ((NBTTagCompound) nbt).getFloat("mana");
         int maxmana= ((NBTTagCompound) nbt).getInteger("maxmana");
+        int maxXp = ((NBTTagCompound) nbt).getInteger("maxxp");
 
         instance.setBreath(breath);
         instance.setLevel(level);
         instance.setXP(xp);
         instance.setMana(mana);
         instance.setMaxMana(maxmana);
+        instance.setMaxXp(maxXp);
 
     }
 }

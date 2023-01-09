@@ -5,6 +5,8 @@ import net.minecraftforge.common.util.INBTSerializable;
 public interface ISlayerCapability {
 
     public int getLevel();
+    public int getMaxXp();
+    public void setMaxXp(int maxXp);
     public int getXP();
     public void levelUp();
     public float getMana();

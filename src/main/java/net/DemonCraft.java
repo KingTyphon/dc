@@ -16,14 +16,16 @@ import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.networking.Networking;
 import net.proxy.ServerProxy;
-import net.util.capabilities.slayer.IStorage;
 import net.util.capabilities.slayer.ISlayerCapability;
+import net.util.capabilities.slayer.IStorage;
 import net.util.capabilities.slayer.SlayerCapability;
 import net.util.capabilities.techniquecapability.ITechStorage;
 import net.util.capabilities.techniquecapability.TechCapability;
 import net.util.capabilities.techniquecapability.iTechCapability;
 import net.util.handlers.Reference;
+import net.util.handlers.RenderHandler;
 import net.world.Events;
+import software.bernie.geckolib3.GeckoLib;
 
 @Mod(modid = Reference.MODID, name = Reference.NAME, version = Reference.VERSION)
 public class DemonCraft
@@ -50,18 +52,19 @@ public class DemonCraft
         data.url = "https://discord.gg/7x6gSwQN6g";
 
 
-
+        GeckoLib.initialize();
         //Sends events for things needed to be called before initialization
         Networking.init();
         CapabilityManager.INSTANCE.register(ISlayerCapability.class, new IStorage(), SlayerCapability::new);
         CapabilityManager.INSTANCE.register(iTechCapability.class, new ITechStorage(), TechCapability::new);
-
+        RenderHandler.registerEntityRenderers();
 
 
     }
     @EventHandler
     public static void init(FMLInitializationEvent event) {
         proxy.registerClientStuff();
+
     }
     @EventHandler
     public static void postInit(FMLPostInitializationEvent event) {

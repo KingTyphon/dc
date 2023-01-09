@@ -10,30 +10,16 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.util.handlers.Reference;
+import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
 
 @SideOnly(Side.CLIENT)
-public class KyogaiRender extends RenderLiving<KyogaiEntity> {
-    public static final ResourceLocation textures = new ResourceLocation(Reference.MODID + ":textures/entity/kyogai.png");
-
-
+public class KyogaiRender extends GeoEntityRenderer<KyogaiEntity> {
     public KyogaiRender(RenderManager manager) {
-        super(manager, new KyogaiModel(), 0.5F);
-    }
 
-    public void doRender(KyogaiEntity entity, double x, double y, double z, float entityYaw, float partialTicks)
-    {
-
-        super.doRender(entity, x, y, z, entityYaw, partialTicks);
-    }
-    @Override
-    protected ResourceLocation getEntityTexture(KyogaiEntity entity) {
-        return textures;
+        super(manager, new KyogaiModel());
+        this.shadowSize = 0.3f;
     }
 
 
-    protected void applyRotations(KyogaiEntity entityLiving, float p_77043_2_, float rotationYaw, float partialTicks)
-    {
-        super.applyRotations(entityLiving, p_77043_2_, rotationYaw, partialTicks);
-    }
 }
 

@@ -12,16 +12,21 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.common.registry.EntityEntry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.networking.Client.ClientSlayer;
 import net.networking.Client.tech.ClientTech;
 import net.networking.Networking;
 import net.util.capabilities.slayer.SlayerProvider;
 import net.util.capabilities.slayer.ISlayerCapability;
 import net.util.capabilities.techniquecapability.TechProvider;
+import net.util.handlers.Reference;
 
 public class Events {
 
@@ -88,6 +93,11 @@ public class Events {
         }
     }
     @SubscribeEvent
+    public void onRegisterEntities(RegistryEvent.Register<EntityEntry> event)
+    {
+
+    }
+    @SubscribeEvent
     public void playerChangeDim(net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerChangedDimensionEvent event){
         ISlayerCapability playerOld = event.player.getCapability(SlayerProvider.Breath_CAP, null);
 
@@ -111,6 +121,7 @@ public class Events {
         }
 
     }
+
     @SubscribeEvent
     public void onPlayerTick(TickEvent.PlayerTickEvent event){
         EntityPlayer player = event.player;
@@ -138,17 +149,34 @@ public class Events {
         }
     }
 
+
     @SubscribeEvent
-    public void onLivingDeath(LivingDeathEvent event){
-        Entity entity = event.getSource().getTrueSource();
-    if(event.getEntity() != entity){
-        if(entity instanceof EntityPlayer) {
-            entity.getCapability(SlayerProvider.Breath_CAP, null).setXP(entity.getCapability(SlayerProvider.Breath_CAP, null).getXP() + 2);
+    public static void onPlayerKill(LivingDeathEvent event)
+    {
+        if (event.getSource().getTrueSource() instanceof EntityPlayerMP)
+        {
+            EntityPlayerMP player = (EntityPlayerMP) event.getSource().getTrueSource();
+
+
+    if(event.getEntity() != player && event.getEntity().hasCapability(SlayerProvider.Breath_CAP, null) ){
+        if(event.getEntity() instanceof EntityPlayer) {
+            player.getCapability(SlayerProvider.Breath_CAP, null).setXP(player.getCapability(SlayerProvider.Breath_CAP, null).getXP() + 6);
+            Networking.sendToServer(new ClientSlayer(player.getCapability(SlayerProvider.Breath_CAP, null).getBreath(), player.getCapability(SlayerProvider.Breath_CAP, null).getMana(), player.getCapability(SlayerProvider.Breath_CAP, null).getXP(), player.getCapability(SlayerProvider.Breath_CAP, null).getLevel(), player.getCapability(SlayerProvider.Breath_CAP, null).getMaxMana()));
+            Networking.sendTo(new ClientSlayer(player.getCapability(SlayerProvider.Breath_CAP, null).getBreath(), player.getCapability(SlayerProvider.Breath_CAP, null).getMana(), player.getCapability(SlayerProvider.Breath_CAP, null).getXP(), player.getCapability(SlayerProvider.Breath_CAP, null).getLevel(), player.getCapability(SlayerProvider.Breath_CAP, null).getMaxMana()),player);
 
         }else if(event.getEntity() instanceof EntityMob){
-            entity.getCapability(SlayerProvider.Breath_CAP, null).setXP(entity.getCapability(SlayerProvider.Breath_CAP, null).getXP() + 4);
-        }else if (event.getEntity() instanceof EntityDemon) entity.getCapability(SlayerProvider.Breath_CAP, null).setXP(entity.getCapability(SlayerProvider.Breath_CAP, null).getXP() + 6);
+            player.getCapability(SlayerProvider.Breath_CAP, null).setXP(player.getCapability(SlayerProvider.Breath_CAP, null).getXP() + 4);
+            Networking.sendToServer(new ClientSlayer(player.getCapability(SlayerProvider.Breath_CAP, null).getBreath(), player.getCapability(SlayerProvider.Breath_CAP, null).getMana(), player.getCapability(SlayerProvider.Breath_CAP, null).getXP(), player.getCapability(SlayerProvider.Breath_CAP, null).getLevel(), player.getCapability(SlayerProvider.Breath_CAP, null).getMaxMana()));
+            Networking.sendTo(new ClientSlayer(player.getCapability(SlayerProvider.Breath_CAP, null).getBreath(), player.getCapability(SlayerProvider.Breath_CAP, null).getMana(), player.getCapability(SlayerProvider.Breath_CAP, null).getXP(), player.getCapability(SlayerProvider.Breath_CAP, null).getLevel(), player.getCapability(SlayerProvider.Breath_CAP, null).getMaxMana()),player);
+
+        }else if (event.getEntity() instanceof EntityDemon)
+        {
+            player.getCapability(SlayerProvider.Breath_CAP, null).setXP(player.getCapability(SlayerProvider.Breath_CAP, null).getXP() + 6);
+            Networking.sendToServer(new ClientSlayer(player.getCapability(SlayerProvider.Breath_CAP, null).getBreath(), player.getCapability(SlayerProvider.Breath_CAP, null).getMana(), player.getCapability(SlayerProvider.Breath_CAP, null).getXP(), player.getCapability(SlayerProvider.Breath_CAP, null).getLevel(), player.getCapability(SlayerProvider.Breath_CAP, null).getMaxMana()));
+            Networking.sendTo(new ClientSlayer(player.getCapability(SlayerProvider.Breath_CAP, null).getBreath(), player.getCapability(SlayerProvider.Breath_CAP, null).getMana(), player.getCapability(SlayerProvider.Breath_CAP, null).getXP(), player.getCapability(SlayerProvider.Breath_CAP, null).getLevel(), player.getCapability(SlayerProvider.Breath_CAP, null).getMaxMana()),player);
         }
+        }
+    }
     }
 }
 

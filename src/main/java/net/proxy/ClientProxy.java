@@ -20,6 +20,7 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.util.handlers.EventHandler;
 import net.util.handlers.RegistryHandler;
+import net.util.handlers.RenderHandler;
 import org.lwjgl.input.Keyboard;
 
 
@@ -41,6 +42,7 @@ public class ClientProxy extends ServerProxy {
     @Override
     public void registerClientStuff(){
         EntityInit.registerEntities();
+
 
         //Keybind Registration
         ClientRegistry.registerKeyBinding(tech);

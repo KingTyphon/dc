@@ -2,6 +2,10 @@ package net.objects.swords;
 
 import net.DemonCraft;
 import com.google.common.collect.Multimap;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.util.capabilities.slayer.SlayerProvider;
 import net.init.ItemInit;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -17,6 +21,11 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
+
+import javax.annotation.Nullable;
+import java.util.List;
+
+import static net.minecraftforge.fml.relauncher.Side.CLIENT;
 
 public class CumBreathingSwords extends ItemSword {
     public CumBreathingSwords(String name, ToolMaterial material){
@@ -58,6 +67,18 @@ public class CumBreathingSwords extends ItemSword {
                 playerIn.sendMessage(new TextComponentString("You Have To Learn Fire Breathing To Use This Sword"));
             }}
         item.damageItem(0, playerIn);
-        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, item); }
+        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, item);
+    }
+    @SideOnly(CLIENT)
+    @Override
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn){
+        String color = TextFormatting.GRAY.toString();
+        String reset = TextFormatting.RESET.toString();
+        if(GuiScreen.isShiftKeyDown())
+            tooltip.add("Sword which can only be activated by the ones who breath " + color + "Cum");
+        else{
+            tooltip.add("Press" + color + " Shift " + reset + "to see more information");
+        }
+    }
 
 }
