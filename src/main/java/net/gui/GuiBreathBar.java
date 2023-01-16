@@ -13,7 +13,7 @@ import net.util.handlers.Reference;
 public class GuiBreathBar extends Gui {
 
 private final ResourceLocation bar = new ResourceLocation(Reference.MODID, "textures/gui/breathbar.png");
-//private final ResourceLocation select = new ResourceLocation(Reference.MODID, "textures/gui/widgets.png");
+private final ResourceLocation select = new ResourceLocation(Reference.MODID, "textures/gui/widgets.png");
 //private final ResourceLocation flame = new ResourceLocation(Reference.MODID, "textures/gui/breathingmoves/Flame/flamegui.png");
 private final int tex_width = 102, tex_height = 8, bar_width = 100, bar_height = 6,bubble_height = 7, bubble_width = 12;
     EntityPlayer player = Minecraft.getMinecraft().player;
@@ -28,18 +28,22 @@ private final int tex_width = 102, tex_height = 8, bar_width = 100, bar_height =
             float mana = mc.player.getCapability(SlayerProvider.Breath_CAP, null).getMana();
             int maxmana = mc.player.getCapability(SlayerProvider.Breath_CAP, null).getMaxMana();
             int width = (int) (bar_width * (mana/ maxmana));
-            int breath = mc.player.getCapability(SlayerProvider.Breath_CAP, null).getBreath();
 
 
             mc.renderEngine.bindTexture(bar);
             drawTexturedModalRect( posX, posY, 0, 0, tex_width, tex_height);
             drawTexturedModalRect(posX+1,posY+1,0, tex_height, width, bar_height);
             drawTexturedModalRect(posX-8, posY-2, 0, tex_height+bar_height, bubble_width, bubble_height);
+        }
+            else{
+            int posX = event.getResolution().getScaledWidth() / 15 - 18;
+            int posY = event.getResolution().getScaledHeight()-30;
+            int breath = Minecraft.getMinecraft().player.getCapability(SlayerProvider.Breath_CAP, null).getBreath();
 
-            //mc.renderEngine.loadTexture(select);
-            //drawTexturedModalRect(posX, posY+100, 0, 0, 22, 22);
-            //drawTexturedModalRect(posX-22 , posY+100, 23, 0, 22, 22);
-            //drawTexturedModalRect(posX+22 , posY+100, 23, 0, 22, 22);
+            Minecraft.getMinecraft().renderEngine.bindTexture(select);
+            drawTexturedModalRect(posX, posY+100, 0, 0, 22, 22);
+            drawTexturedModalRect(posX-22 , posY+100, 23, 0, 22, 22);
+            drawTexturedModalRect(posX+22 , posY+100, 23, 0, 22, 22);
             switch(breath){
                 case 1:
                     //Flame

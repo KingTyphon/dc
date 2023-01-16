@@ -85,7 +85,7 @@ public class ItemInit {
     public static final Item ramen = new Ramen("ramen", 4, false);
 
     //Drinks
-    public static final Item beer = new Beer("beer");
+    //public static final Item beer = new Beer("beer");
 
     //Armor(Temp Not Registered)
     public static final Item TANJIRO_EARRING = new Tanjuro_earring(HAORI, 104, EntityEquipmentSlot.HEAD, "earring");

@@ -1,4 +1,4 @@
-package net.networking.Client;
+package net.networking.Client.slayer;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -7,11 +7,10 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.util.capabilities.slayer.SlayerProvider;
 
-public class ClientHandler implements IMessageHandler<ClientSlayer, IMessage> {
+public class ClientHandler implements IMessageHandler<SlayerMessage, IMessage> {
 
     @Override
-    public IMessage onMessage(ClientSlayer message, MessageContext ctx) {
-        //Player
+    public IMessage onMessage(SlayerMessage message, MessageContext ctx) {
         EntityPlayer entityClientPlayerMP = (Minecraft.getMinecraft()).player;
 
         //Numbers

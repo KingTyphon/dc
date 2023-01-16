@@ -16,6 +16,9 @@ import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.networking.Networking;
 import net.proxy.ServerProxy;
+import net.util.capabilities.demon.DemonCapability;
+import net.util.capabilities.demon.DemonStorage;
+import net.util.capabilities.demon.IDemonCapability;
 import net.util.capabilities.slayer.ISlayerCapability;
 import net.util.capabilities.slayer.IStorage;
 import net.util.capabilities.slayer.SlayerCapability;
@@ -57,6 +60,7 @@ public class DemonCraft
         Networking.init();
         CapabilityManager.INSTANCE.register(ISlayerCapability.class, new IStorage(), SlayerCapability::new);
         CapabilityManager.INSTANCE.register(iTechCapability.class, new ITechStorage(), TechCapability::new);
+        CapabilityManager.INSTANCE.register(IDemonCapability.class, new DemonStorage(), DemonCapability::new);
         RenderHandler.registerEntityRenderers();
 
 

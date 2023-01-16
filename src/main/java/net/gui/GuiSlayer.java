@@ -1,5 +1,6 @@
 package net.gui;
 
+import net.gui.button.UpgradeButton;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;

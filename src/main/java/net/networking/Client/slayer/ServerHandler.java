@@ -1,4 +1,4 @@
-package net.networking.Client;
+package net.networking.Client.slayer;
 
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -6,8 +6,8 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.util.capabilities.slayer.SlayerProvider;
 
-public class ServerHandler implements IMessageHandler<ClientSlayer, IMessage> {
-    public IMessage onMessage(ClientSlayer message, MessageContext ctx) {
+public class ServerHandler implements IMessageHandler<SlayerMessage, IMessage> {
+    public IMessage onMessage(SlayerMessage message, MessageContext ctx) {
         EntityPlayerMP serverplayer = ctx.getServerHandler().player;
         int amount = message.Breath;
         float mana = message.Mana;

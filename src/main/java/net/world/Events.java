@@ -3,7 +3,6 @@ package net.world;
 
 import net.entity.Demon.EntityDemon;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntityMob;
@@ -15,18 +14,20 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.networking.Client.ClientSlayer;
-import net.networking.Client.tech.ClientTech;
+import net.networking.Client.slayer.SlayerMessage;
+import net.networking.Client.tech.TechMessage;
 import net.networking.Networking;
 import net.util.capabilities.slayer.SlayerProvider;
 import net.util.capabilities.slayer.ISlayerCapability;
 import net.util.capabilities.techniquecapability.TechProvider;
-import net.util.handlers.Reference;
+
+import static net.minecraftforge.fml.relauncher.Side.*;
+import static net.util.handlers.Reference.CLIENT;
 
 public class Events {
 
@@ -37,14 +38,14 @@ public class Events {
     public void onPlayerClone(PlayerEvent.Clone event){
 
         //Capabilities
-        EntityPlayerMP player = (EntityPlayerMP) event.getEntityPlayer();;
+        EntityPlayerMP player = (EntityPlayerMP) event.getEntityPlayer();
 
         //Gets the Old Player
         ISlayerCapability playerOld = event.getOriginal().getCapability(SlayerProvider.Breath_CAP, null);
         ISlayerCapability playerNew = player.getCapability(SlayerProvider.Breath_CAP, null);
         if (event.isWasDeath() && player != null && !player.world.isRemote) {
             player.getCapability(TechProvider.TECH_CAP, null).setTech(event.getOriginal().getCapability(TechProvider.TECH_CAP, null).getTech());
-            Networking.sendTo(new ClientTech(event.getOriginal()), (EntityPlayerMP) player);
+            Networking.sendTo(new TechMessage(event.getOriginal()), player);
 
             //Sets the players current stats to match up with the stats they had before death
 
@@ -53,8 +54,8 @@ public class Events {
             playerNew.setLevel(playerOld.getLevel());
             playerNew.setMaxMana(playerOld.getMaxMana());
             playerNew.setMana(playerOld.getMaxMana());
-            Networking.sendToServer(new ClientSlayer(playerNew.getBreath(), playerNew.getMana(), playerNew.getXP(), playerNew.getLevel(), playerNew.getMaxMana()));
-            Networking.sendTo(new ClientSlayer(playerNew.getBreath(), playerNew.getMana(), playerNew.getXP(), playerNew.getLevel(), playerNew.getMaxMana()), player);
+            Networking.sendToServer(new SlayerMessage(playerNew.getBreath(), playerNew.getMana(), playerNew.getXP(), playerNew.getLevel(), playerNew.getMaxMana()));
+            Networking.sendTo(new SlayerMessage(playerNew.getBreath(), playerNew.getMana(), playerNew.getXP(), playerNew.getLevel(), playerNew.getMaxMana()), player);
 
             //Sends the stats over if they have a breathing technique
             if (player.getCapability(SlayerProvider.Breath_CAP, null).getBreath() > 0) {
@@ -68,8 +69,8 @@ public class Events {
         }
         //Does this to make sure it copies the stats over
         if (!event.isWasDeath() && player != null) {
-            Networking.sendToServer(new ClientSlayer(playerOld.getBreath(), playerOld.getMana(), playerOld.getXP(), playerOld.getLevel(), playerOld.getMaxMana()));
-            Networking.sendTo(new ClientSlayer(playerOld.getBreath(), playerOld.getMana(), playerOld.getXP(), playerOld.getLevel(), playerOld.getMaxMana()), (EntityPlayerMP) player);
+            Networking.sendToServer(new SlayerMessage(playerOld.getBreath(), playerOld.getMana(), playerOld.getXP(), playerOld.getLevel(), playerOld.getMaxMana()));
+            Networking.sendTo(new SlayerMessage(playerOld.getBreath(), playerOld.getMana(), playerOld.getXP(), playerOld.getLevel(), playerOld.getMaxMana()), (EntityPlayerMP) player);
             playerNew.setBreath(playerOld.getBreath());
             playerNew.setXP(playerOld.getXP());
             playerNew.setMana(playerOld.getMaxMana());
@@ -77,19 +78,19 @@ public class Events {
             playerNew.setMaxMana(playerOld.getMaxMana());
 
             player.getCapability(TechProvider.TECH_CAP, null).setTech(event.getOriginal().getCapability(TechProvider.TECH_CAP, null).getTech());
-            Networking.sendTo(new ClientTech(event.getOriginal()), (EntityPlayerMP) player);
+            Networking.sendTo(new TechMessage(event.getOriginal()), (EntityPlayerMP) player);
         }
 
-        Networking.sendToServer(new ClientSlayer(playerNew.getBreath(), playerNew.getMana(), playerNew.getXP(), playerNew.getLevel(), playerNew.getMaxMana()));
-        Networking.sendTo(new ClientSlayer(playerNew.getBreath(), playerNew.getMana(), playerNew.getXP(), playerNew.getLevel(), playerNew.getMaxMana()), player);
+        Networking.sendToServer(new SlayerMessage(playerNew.getBreath(), playerNew.getMana(), playerNew.getXP(), playerNew.getLevel(), playerNew.getMaxMana()));
+        Networking.sendTo(new SlayerMessage(playerNew.getBreath(), playerNew.getMana(), playerNew.getXP(), playerNew.getLevel(), playerNew.getMaxMana()), player);
     }
     @SubscribeEvent
     public void playerLoggedInEvent(net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent event) {
         World world = event.player.world;
         ISlayerCapability playerOld = event.player.getCapability(SlayerProvider.Breath_CAP, null);
         if(!world.isRemote) {
-            Networking.sendTo(new ClientTech(event.player), (EntityPlayerMP) event.player);
-            Networking.sendTo(new ClientSlayer(playerOld.getBreath(), playerOld.getMana(), playerOld.getXP(), playerOld.getLevel(), playerOld.getMaxMana()), (EntityPlayerMP) event.player);
+            Networking.sendTo(new TechMessage(event.player), (EntityPlayerMP) event.player);
+            Networking.sendTo(new SlayerMessage(playerOld.getBreath(), playerOld.getMana(), playerOld.getXP(), playerOld.getLevel(), playerOld.getMaxMana()), (EntityPlayerMP) event.player);
         }
     }
     @SubscribeEvent
@@ -101,9 +102,9 @@ public class Events {
     public void playerChangeDim(net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerChangedDimensionEvent event){
         ISlayerCapability playerOld = event.player.getCapability(SlayerProvider.Breath_CAP, null);
 
-        Networking.sendTo(new ClientSlayer(playerOld.getBreath(), playerOld.getMana(), playerOld.getXP(), playerOld.getLevel(), playerOld.getMaxMana()), (EntityPlayerMP) event.player);
+        Networking.sendTo(new SlayerMessage(playerOld.getBreath(), playerOld.getMana(), playerOld.getXP(), playerOld.getLevel(), playerOld.getMaxMana()), (EntityPlayerMP) event.player);
 
-        Networking.sendTo(new ClientTech(event.player), (EntityPlayerMP) event.player);
+        Networking.sendTo(new TechMessage(event.player), (EntityPlayerMP) event.player);
 
     }
     @SubscribeEvent
@@ -149,31 +150,30 @@ public class Events {
         }
     }
 
-
+    @SidedProxy(Side.CLIENT)
     @SubscribeEvent
     public static void onPlayerKill(LivingDeathEvent event)
     {
-        if (event.getSource().getTrueSource() instanceof EntityPlayerMP)
-        {
-            EntityPlayerMP player = (EntityPlayerMP) event.getSource().getTrueSource();
+        Entity player = event.getSource().getTrueSource();
+    if (player instanceof EntityPlayerMP) {
 
 
-    if(event.getEntity() != player && event.getEntity().hasCapability(SlayerProvider.Breath_CAP, null) ){
+    if(player.world.isRemote && event.getEntity() != player && event.getEntity().hasCapability(SlayerProvider.Breath_CAP, null) ){
         if(event.getEntity() instanceof EntityPlayer) {
             player.getCapability(SlayerProvider.Breath_CAP, null).setXP(player.getCapability(SlayerProvider.Breath_CAP, null).getXP() + 6);
-            Networking.sendToServer(new ClientSlayer(player.getCapability(SlayerProvider.Breath_CAP, null).getBreath(), player.getCapability(SlayerProvider.Breath_CAP, null).getMana(), player.getCapability(SlayerProvider.Breath_CAP, null).getXP(), player.getCapability(SlayerProvider.Breath_CAP, null).getLevel(), player.getCapability(SlayerProvider.Breath_CAP, null).getMaxMana()));
-            Networking.sendTo(new ClientSlayer(player.getCapability(SlayerProvider.Breath_CAP, null).getBreath(), player.getCapability(SlayerProvider.Breath_CAP, null).getMana(), player.getCapability(SlayerProvider.Breath_CAP, null).getXP(), player.getCapability(SlayerProvider.Breath_CAP, null).getLevel(), player.getCapability(SlayerProvider.Breath_CAP, null).getMaxMana()),player);
+            Networking.sendToServer(new SlayerMessage(player.getCapability(SlayerProvider.Breath_CAP, null).getBreath(), player.getCapability(SlayerProvider.Breath_CAP, null).getMana(), player.getCapability(SlayerProvider.Breath_CAP, null).getXP(), player.getCapability(SlayerProvider.Breath_CAP, null).getLevel(), player.getCapability(SlayerProvider.Breath_CAP, null).getMaxMana()));
+            //Networking.sendTo(new SlayerMessage(player.getCapability(SlayerProvider.Breath_CAP, null).getBreath(), player.getCapability(SlayerProvider.Breath_CAP, null).getMana(), player.getCapability(SlayerProvider.Breath_CAP, null).getXP(), player.getCapability(SlayerProvider.Breath_CAP, null).getLevel(), player.getCapability(SlayerProvider.Breath_CAP, null).getMaxMana()),player);
 
         }else if(event.getEntity() instanceof EntityMob){
             player.getCapability(SlayerProvider.Breath_CAP, null).setXP(player.getCapability(SlayerProvider.Breath_CAP, null).getXP() + 4);
-            Networking.sendToServer(new ClientSlayer(player.getCapability(SlayerProvider.Breath_CAP, null).getBreath(), player.getCapability(SlayerProvider.Breath_CAP, null).getMana(), player.getCapability(SlayerProvider.Breath_CAP, null).getXP(), player.getCapability(SlayerProvider.Breath_CAP, null).getLevel(), player.getCapability(SlayerProvider.Breath_CAP, null).getMaxMana()));
-            Networking.sendTo(new ClientSlayer(player.getCapability(SlayerProvider.Breath_CAP, null).getBreath(), player.getCapability(SlayerProvider.Breath_CAP, null).getMana(), player.getCapability(SlayerProvider.Breath_CAP, null).getXP(), player.getCapability(SlayerProvider.Breath_CAP, null).getLevel(), player.getCapability(SlayerProvider.Breath_CAP, null).getMaxMana()),player);
+            Networking.sendToServer(new SlayerMessage(player.getCapability(SlayerProvider.Breath_CAP, null).getBreath(), player.getCapability(SlayerProvider.Breath_CAP, null).getMana(), player.getCapability(SlayerProvider.Breath_CAP, null).getXP(), player.getCapability(SlayerProvider.Breath_CAP, null).getLevel(), player.getCapability(SlayerProvider.Breath_CAP, null).getMaxMana()));
+            //Networking.sendTo(new SlayerMessage(player.getCapability(SlayerProvider.Breath_CAP, null).getBreath(), player.getCapability(SlayerProvider.Breath_CAP, null).getMana(), player.getCapability(SlayerProvider.Breath_CAP, null).getXP(), player.getCapability(SlayerProvider.Breath_CAP, null).getLevel(), player.getCapability(SlayerProvider.Breath_CAP, null).getMaxMana()),player);
 
         }else if (event.getEntity() instanceof EntityDemon)
         {
             player.getCapability(SlayerProvider.Breath_CAP, null).setXP(player.getCapability(SlayerProvider.Breath_CAP, null).getXP() + 6);
-            Networking.sendToServer(new ClientSlayer(player.getCapability(SlayerProvider.Breath_CAP, null).getBreath(), player.getCapability(SlayerProvider.Breath_CAP, null).getMana(), player.getCapability(SlayerProvider.Breath_CAP, null).getXP(), player.getCapability(SlayerProvider.Breath_CAP, null).getLevel(), player.getCapability(SlayerProvider.Breath_CAP, null).getMaxMana()));
-            Networking.sendTo(new ClientSlayer(player.getCapability(SlayerProvider.Breath_CAP, null).getBreath(), player.getCapability(SlayerProvider.Breath_CAP, null).getMana(), player.getCapability(SlayerProvider.Breath_CAP, null).getXP(), player.getCapability(SlayerProvider.Breath_CAP, null).getLevel(), player.getCapability(SlayerProvider.Breath_CAP, null).getMaxMana()),player);
+            Networking.sendToServer(new SlayerMessage(player.getCapability(SlayerProvider.Breath_CAP, null).getBreath(), player.getCapability(SlayerProvider.Breath_CAP, null).getMana(), player.getCapability(SlayerProvider.Breath_CAP, null).getXP(), player.getCapability(SlayerProvider.Breath_CAP, null).getLevel(), player.getCapability(SlayerProvider.Breath_CAP, null).getMaxMana()));
+            //Networking.sendTo(new SlayerMessage(player.getCapability(SlayerProvider.Breath_CAP, null).getBreath(), player.getCapability(SlayerProvider.Breath_CAP, null).getMana(), player.getCapability(SlayerProvider.Breath_CAP, null).getXP(), player.getCapability(SlayerProvider.Breath_CAP, null).getLevel(), player.getCapability(SlayerProvider.Breath_CAP, null).getMaxMana()),player);
         }
         }
     }

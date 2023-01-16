@@ -2,10 +2,11 @@ package net.networking.Client.tech;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.util.capabilities.techniquecapability.TechProvider;
 
-public class ClientTech implements IMessage {
+public class TechMessage implements IMessage {
     //Data for every user
     public int tech;
     public int sp;
@@ -13,8 +14,9 @@ public class ClientTech implements IMessage {
     public int speed;
     public int strength;
     public int manaPoint;
+    public int skill;
 
-    public ClientTech(EntityPlayer player){
+    public TechMessage(EntityPlayer player){
         //Takes the parameters and sets it to each one
         this.tech = player.getCapability(TechProvider.TECH_CAP, null).getTech();
         this.sp = player.getCapability(TechProvider.TECH_CAP, null).getSp();
@@ -22,9 +24,21 @@ public class ClientTech implements IMessage {
         this.speed = player.getCapability(TechProvider.TECH_CAP,null).getSpeed();
         this.strength = player.getCapability(TechProvider.TECH_CAP, null).getStrength();
         this.manaPoint = player.getCapability(TechProvider.TECH_CAP, null).getManaPoint();
+        this.skill = player.getCapability(TechProvider.TECH_CAP, null).getSkill();
 
     }
-    public ClientTech(){}
+    public TechMessage(EntityPlayerMP player){
+        //Takes the parameters and sets it to each one
+        this.tech = player.getCapability(TechProvider.TECH_CAP, null).getTech();
+        this.sp = player.getCapability(TechProvider.TECH_CAP, null).getSp();
+        this.health = player.getCapability(TechProvider.TECH_CAP, null).getHealth();
+        this.speed = player.getCapability(TechProvider.TECH_CAP,null).getSpeed();
+        this.strength = player.getCapability(TechProvider.TECH_CAP, null).getStrength();
+        this.manaPoint = player.getCapability(TechProvider.TECH_CAP, null).getManaPoint();
+        this.skill = player.getCapability(TechProvider.TECH_CAP, null).getSkill();
+
+    }
+    public TechMessage(){}
 
     @Override
     public void toBytes(ByteBuf buf) {
@@ -35,6 +49,7 @@ public class ClientTech implements IMessage {
         buf.writeInt(speed);
         buf.writeInt(strength);
         buf.writeInt(manaPoint);
+        buf.writeInt(skill);
     }
 
     @Override
@@ -46,6 +61,7 @@ public class ClientTech implements IMessage {
         speed = buf.readInt();
         strength = buf.readInt();
         manaPoint = buf.readInt();
+        skill = buf.readInt();
 
     }
 }

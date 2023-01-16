@@ -20,6 +20,9 @@ public class GuiHandler implements IGuiHandler {
         if(GuiSlayer.ID == id) {
             return new GuiSlayer();
         }
+        if(SkillTreeGui.ID == id){
+            return new SkillTreeGui();
+        }
         return null;
     }
 }

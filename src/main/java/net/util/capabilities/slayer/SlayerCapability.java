@@ -10,6 +10,7 @@ public class SlayerCapability implements ISlayerCapability {
   private int maxXp;
 
 
+
   @Override
   public int getXP(){
     return xp;

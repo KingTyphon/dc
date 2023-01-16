@@ -1,4 +1,4 @@
-package net.gui;
+package net.gui.button;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;

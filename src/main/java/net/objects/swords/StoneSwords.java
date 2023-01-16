@@ -26,7 +26,7 @@ public class StoneSwords extends ItemSword{
     @SideOnly(CLIENT)
     @Override
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn){
-        String color = TextFormatting.GOLD.toString();
+        String color = TextFormatting.DARK_GRAY.toString();
         String reset = TextFormatting.RESET.toString();
         if(GuiScreen.isShiftKeyDown())
             tooltip.add("Sword which can only be activated by the ones who breath " + color + "Stone");

@@ -21,12 +21,11 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.*;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.networking.Client.ClientSlayer;
+import net.networking.Client.slayer.SlayerMessage;
 import net.networking.Networking;
 import net.util.capabilities.slayer.SlayerProvider;
 import net.util.capabilities.techniquecapability.TechProvider;
 import net.util.handlers.SoundHandler;
-import org.lwjgl.input.Keyboard;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -74,7 +73,7 @@ public class ShadowSwords extends ItemSword {
                         player.spawnSweepParticles();
                         player.sendMessage(new TextComponentString("Shadow Breathing 1st Form: Shadow-Slice"));
                         player.getCapability(SlayerProvider.Breath_CAP, null).setMana(mana - 25.0F);
-                        Networking.sendTo(new ClientSlayer(player.getCapability(SlayerProvider.Breath_CAP, null).getBreath(),player.getCapability(SlayerProvider.Breath_CAP, null).getMana(), player.getCapability(SlayerProvider.Breath_CAP, null).getXP(), player.getCapability(SlayerProvider.Breath_CAP, null).getLevel(), player.getCapability(SlayerProvider.Breath_CAP, null).getMaxMana()), (EntityPlayerMP) player );
+                        Networking.sendTo(new SlayerMessage(player.getCapability(SlayerProvider.Breath_CAP, null).getBreath(),player.getCapability(SlayerProvider.Breath_CAP, null).getMana(), player.getCapability(SlayerProvider.Breath_CAP, null).getXP(), player.getCapability(SlayerProvider.Breath_CAP, null).getLevel(), player.getCapability(SlayerProvider.Breath_CAP, null).getMaxMana()), (EntityPlayerMP) player );
                     }
                         //Shadow Form 3
                     if(player.getCapability(TechProvider.TECH_CAP, null).getTech() == 3 && mana >= 25){
@@ -90,7 +89,7 @@ public class ShadowSwords extends ItemSword {
                                     break;
                                 }
                        }
-                            Networking.sendTo(new ClientSlayer(player.getCapability(SlayerProvider.Breath_CAP, null).getBreath(),player.getCapability(SlayerProvider.Breath_CAP, null).getMana(), player.getCapability(SlayerProvider.Breath_CAP, null).getXP(), player.getCapability(SlayerProvider.Breath_CAP, null).getLevel(), player.getCapability(SlayerProvider.Breath_CAP, null).getMaxMana()), (EntityPlayerMP) player );
+                            Networking.sendTo(new SlayerMessage(player.getCapability(SlayerProvider.Breath_CAP, null).getBreath(),player.getCapability(SlayerProvider.Breath_CAP, null).getMana(), player.getCapability(SlayerProvider.Breath_CAP, null).getXP(), player.getCapability(SlayerProvider.Breath_CAP, null).getLevel(), player.getCapability(SlayerProvider.Breath_CAP, null).getMaxMana()), (EntityPlayerMP) player );
                         }
                     //Curse of the Dark: Form 4
                     if(mana >= 25 && player.getCapability(TechProvider.TECH_CAP, null).getTech() == 4 && mana >= 25){
@@ -102,7 +101,7 @@ public class ShadowSwords extends ItemSword {
                         worldIn.spawnEntity((Entity) ball);
                         player.sendMessage(new TextComponentString("Shadow Breathing 4th Form: Curse of the Dark"));
                         player.getCapability(SlayerProvider.Breath_CAP, null).setMana(mana - 25.0F);
-                        Networking.sendTo(new ClientSlayer(player.getCapability(SlayerProvider.Breath_CAP, null).getBreath(),player.getCapability(SlayerProvider.Breath_CAP, null).getMana(), player.getCapability(SlayerProvider.Breath_CAP, null).getXP(), player.getCapability(SlayerProvider.Breath_CAP, null).getLevel(), player.getCapability(SlayerProvider.Breath_CAP, null).getMaxMana()), (EntityPlayerMP) player );
+                        Networking.sendTo(new SlayerMessage(player.getCapability(SlayerProvider.Breath_CAP, null).getBreath(),player.getCapability(SlayerProvider.Breath_CAP, null).getMana(), player.getCapability(SlayerProvider.Breath_CAP, null).getXP(), player.getCapability(SlayerProvider.Breath_CAP, null).getLevel(), player.getCapability(SlayerProvider.Breath_CAP, null).getMaxMana()), (EntityPlayerMP) player );
                         tick=200;
                     }
                     //Blessing of the Dark: Form 5
@@ -110,7 +109,7 @@ public class ShadowSwords extends ItemSword {
                             player.addPotionEffect(new PotionEffect(MobEffects.INVISIBILITY, 80, 1,true, false));
                             player.sendMessage(new TextComponentString("Shadow Breathing 5th Form: Blessing of the Dark"));
                             player.getCapability(SlayerProvider.Breath_CAP, null).setMana(mana - 20.0F);
-                            Networking.sendTo(new ClientSlayer(player.getCapability(SlayerProvider.Breath_CAP, null).getBreath(),player.getCapability(SlayerProvider.Breath_CAP, null).getMana(), player.getCapability(SlayerProvider.Breath_CAP, null).getXP(), player.getCapability(SlayerProvider.Breath_CAP, null).getLevel(), player.getCapability(SlayerProvider.Breath_CAP, null).getMaxMana()), (EntityPlayerMP) player );
+                            Networking.sendTo(new SlayerMessage(player.getCapability(SlayerProvider.Breath_CAP, null).getBreath(),player.getCapability(SlayerProvider.Breath_CAP, null).getMana(), player.getCapability(SlayerProvider.Breath_CAP, null).getXP(), player.getCapability(SlayerProvider.Breath_CAP, null).getLevel(), player.getCapability(SlayerProvider.Breath_CAP, null).getMaxMana()), (EntityPlayerMP) player );
                             tick = 150;
                         }
 

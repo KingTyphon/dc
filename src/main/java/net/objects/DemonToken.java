@@ -10,7 +10,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
-import net.networking.Client.tech.ClientTech;
+import net.networking.Client.tech.TechMessage;
 import net.networking.Networking;
 
 public class DemonToken extends Item {
@@ -35,8 +35,8 @@ public class DemonToken extends Item {
                 //get the demon style for the user
             }
 
-            Networking.sendToServer(new ClientTech(playerIn));
-            Networking.sendTo(new ClientTech(playerIn), (EntityPlayerMP) playerIn);
+            Networking.sendToServer(new TechMessage(playerIn));
+            Networking.sendTo(new TechMessage((EntityPlayerMP) playerIn), (EntityPlayerMP) playerIn);
 
             stack.shrink(1);
         }
