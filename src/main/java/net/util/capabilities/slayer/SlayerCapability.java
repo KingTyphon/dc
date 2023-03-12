@@ -10,7 +10,6 @@ public class SlayerCapability implements ISlayerCapability {
   private int maxXp;
 
 
-
   @Override
   public int getXP(){
     return xp;
@@ -70,4 +69,18 @@ public class SlayerCapability implements ISlayerCapability {
   @Override
   public void setMaxMana(int maxmana) {this.maxmana = maxmana;}
 
+
+
+  @Override
+  public void copyFrom(ISlayerCapability player) {
+
+      this.breath = player.getBreath();
+      this.mana = player.getMana();
+      this.maxmana = player.getMaxMana();
+      this.level= player.getLevel();
+      this.xp =  player.getXP();
+      this.maxXp = player.getMaxXp();
+    }
+
 }
+

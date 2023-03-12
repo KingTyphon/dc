@@ -8,12 +8,16 @@ import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.objects.*;
+import net.objects.armor.Taihuku_chest;
+import net.objects.armor.Taihuku_feet;
+import net.objects.armor.Taihuku_leggings;
+import net.objects.armor.Tanjuro_earring;
+import net.objects.drinks.*;
 import net.objects.foods.Ramen;
 import net.objects.foods.Sushi;
-import net.objects.swords.CumBreathingSwords;
-import net.objects.swords.FireSwords;
-import net.objects.swords.LightningSwords;
-import net.objects.swords.ShadowSwords;
+import net.objects.swords.*;
+import net.objects.tokens.DemonToken;
+import net.objects.tokens.SlayerToken;
 import net.util.handlers.Reference;
 
 import java.util.ArrayList;
@@ -85,7 +89,7 @@ public class ItemInit {
     public static final Item ramen = new Ramen("ramen", 4, false);
 
     //Drinks
-    //public static final Item beer = new Beer("beer");
+    public static final Item beer = new Beer("beer");
 
     //Armor(Temp Not Registered)
     public static final Item TANJIRO_EARRING = new Tanjuro_earring(HAORI, 104, EntityEquipmentSlot.HEAD, "earring");

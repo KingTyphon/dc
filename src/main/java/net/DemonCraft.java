@@ -16,9 +16,6 @@ import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.networking.Networking;
 import net.proxy.ServerProxy;
-import net.util.capabilities.demon.DemonCapability;
-import net.util.capabilities.demon.DemonStorage;
-import net.util.capabilities.demon.IDemonCapability;
 import net.util.capabilities.slayer.ISlayerCapability;
 import net.util.capabilities.slayer.IStorage;
 import net.util.capabilities.slayer.SlayerCapability;
@@ -33,18 +30,19 @@ import software.bernie.geckolib3.GeckoLib;
 @Mod(modid = Reference.MODID, name = Reference.NAME, version = Reference.VERSION)
 public class DemonCraft
 {
+
+
     public static final CreativeTabs demoncrafttab = new DemonCraftTab("demon_craft_tab");
 
     @SidedProxy(clientSide = Reference.CLIENT, serverSide = Reference.COMMON)
     public static ServerProxy proxy;
 
 
-    @Instance
+    @Mod.Instance
     public static DemonCraft instance;
 
 
-
-    @EventHandler
+    @Mod.EventHandler
     public static void preInit(FMLPreInitializationEvent event) {
         //Sets the information for the mod
         ModMetadata data = event.getModMetadata();
@@ -60,7 +58,6 @@ public class DemonCraft
         Networking.init();
         CapabilityManager.INSTANCE.register(ISlayerCapability.class, new IStorage(), SlayerCapability::new);
         CapabilityManager.INSTANCE.register(iTechCapability.class, new ITechStorage(), TechCapability::new);
-        CapabilityManager.INSTANCE.register(IDemonCapability.class, new DemonStorage(), DemonCapability::new);
         RenderHandler.registerEntityRenderers();
 
 
@@ -76,6 +73,8 @@ public class DemonCraft
     }
     @SubscribeEvent
     static void listen(Event e){
+
         MinecraftForge.EVENT_BUS.register(new Events());
+
     }
 }

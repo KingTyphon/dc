@@ -24,7 +24,6 @@ public class SerpentSwords extends ItemSword {
         ItemInit.ITEMS.add(this);
     }
 
-    @SideOnly(CLIENT)
     @Override
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn){
         String color = TextFormatting.GREEN.toString();

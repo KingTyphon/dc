@@ -1,25 +1,15 @@
 package net.init;
 
 import net.minecraft.block.Block;
-import net.minecraft.item.Item;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.objects.ToolSword;
+import net.minecraft.block.material.Material;
+import net.objects.blocks.BlockWoodenBuilding;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BlockInit {
-    public static final List<Block> BLOCKS;
-    static {
-        BLOCKS = new ArrayList<>();
+    public static final List<Block> BLOCKS = new ArrayList<Block>();
 
-    }
-    //public static final Block wood_building = new Wood("mitsuri" , TOOL_SCARLET_CRIMSON);
+    public static final Block WOOD_BUILDING = new BlockWoodenBuilding("wood_building", Material.WOOD);
 
-    @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Block> event) {
-        event.getRegistry().registerAll((Block) BLOCKS);
-
-    }
 }

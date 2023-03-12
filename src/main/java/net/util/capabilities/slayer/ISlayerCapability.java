@@ -17,4 +17,5 @@ public interface ISlayerCapability {
     public void setBreath(int breath);
     public int getMaxMana();
     public void setMaxMana(int maxmana);
+    public void copyFrom(ISlayerCapability player);
 }

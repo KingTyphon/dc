@@ -1,18 +1,21 @@
 package net.util.handlers;
 
 import net.DemonCraft;
+import net.entity.Kyogai.KyogaiEntity;
 import net.init.BlockInit;
 import net.init.ItemInit;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.EntityEntry;
+import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.recipes.CraftingRecipes;
 
-//Main Class to register and holds methods to register things similar to Items,Blocks,Entities
 @EventBusSubscriber
 public class RegistryHandler {
     @SubscribeEvent
@@ -20,7 +23,6 @@ public class RegistryHandler {
     {
         event.getRegistry().registerAll(ItemInit.ITEMS.toArray(new Item[0]));
     }
-    //Block Registry
     @SubscribeEvent
     public static void onBlockRegister(RegistryEvent.Register<Block> event)
     {
@@ -31,7 +33,6 @@ public class RegistryHandler {
         for (Item item : ItemInit.ITEMS) {
             DemonCraft.proxy.registerItemRenderer(item, 0, "inventory");
         }
-        //Per Block in the list gets run and registered for the item
         for(Block block : BlockInit.BLOCKS){
             DemonCraft.proxy.registerItemRenderer(Item.getItemFromBlock(block), 0, "inventory");
         }

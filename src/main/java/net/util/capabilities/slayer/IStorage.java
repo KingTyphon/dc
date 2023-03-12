@@ -7,6 +7,10 @@ import net.util.capabilities.slayer.ISlayerCapability;
 
 public class IStorage implements Capability.IStorage<ISlayerCapability>{
 
+    public IStorage(){
+
+    }
+
     @Override
     public NBTBase writeNBT(Capability<ISlayerCapability> capability, ISlayerCapability instance, EnumFacing side){
 

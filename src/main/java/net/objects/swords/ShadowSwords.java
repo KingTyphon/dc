@@ -21,7 +21,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.*;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.networking.Client.slayer.SlayerMessage;
+import net.networking.messages.slayer.Slayer;
 import net.networking.Networking;
 import net.util.capabilities.slayer.SlayerProvider;
 import net.util.capabilities.techniquecapability.TechProvider;
@@ -57,6 +57,7 @@ public class ShadowSwords extends ItemSword {
                         EntityShadowslash slash = new EntityShadowslash(worldIn);
                         float reach = 16f;
                         float mana = player.getCapability(SlayerProvider.Breath_CAP, null).getMana();
+                        int form = player.getCapability(TechProvider.TECH_CAP, null).getTech();
 
                         Vec3d eyepos = player.getPositionEyes(1f);
                         Vec3d lookangle = player.getLook(1f);
@@ -66,17 +67,19 @@ public class ShadowSwords extends ItemSword {
 
 
                     //Form 1
-                    if(player.getCapability(TechProvider.TECH_CAP, null).getTech() == 1 && mana >= 25) {
-                        slash.setLocationAndAngles(player.posX + look.x * 2, player.posY + player.eyeHeight - 1, player.posZ + look.z * 2, player.rotationYaw, player.rotationYaw);
+                    if(form == 1 && mana >= 25) {
+                        slash.setLocationAndAngles(player.posX + look.x * 1.5, player.posY + player.eyeHeight - 1, player.posZ + look.z * 1.5, player.rotationYaw, player.rotationPitch);
                         slash.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 3F, 0.0F);
                         worldIn.spawnEntity((Entity) slash);
                         player.spawnSweepParticles();
                         player.sendMessage(new TextComponentString("Shadow Breathing 1st Form: Shadow-Slice"));
                         player.getCapability(SlayerProvider.Breath_CAP, null).setMana(mana - 25.0F);
-                        Networking.sendTo(new SlayerMessage(player.getCapability(SlayerProvider.Breath_CAP, null).getBreath(),player.getCapability(SlayerProvider.Breath_CAP, null).getMana(), player.getCapability(SlayerProvider.Breath_CAP, null).getXP(), player.getCapability(SlayerProvider.Breath_CAP, null).getLevel(), player.getCapability(SlayerProvider.Breath_CAP, null).getMaxMana()), (EntityPlayerMP) player );
+                        Networking.sendTo(new Slayer(player.getCapability(SlayerProvider.Breath_CAP, null)), (EntityPlayerMP) player);
                     }
-                        //Shadow Form 3
-                    if(player.getCapability(TechProvider.TECH_CAP, null).getTech() == 3 && mana >= 25){
+                    //Shadow Form 2
+
+                    //Darkness of the Dawn Shadow Form 3
+                    if(form == 3 && mana >= 25){
                        AxisAlignedBB AABB = new AxisAlignedBB(lastVec.x, lastVec.y, lastVec.z, vec.x, vec.y, vec.z);
                        for (Entity entity : worldIn.getEntitiesWithinAABBExcludingEntity(player, AABB)) {
                            if (entity instanceof EntityLivingBase){
@@ -89,19 +92,19 @@ public class ShadowSwords extends ItemSword {
                                     break;
                                 }
                        }
-                            Networking.sendTo(new SlayerMessage(player.getCapability(SlayerProvider.Breath_CAP, null).getBreath(),player.getCapability(SlayerProvider.Breath_CAP, null).getMana(), player.getCapability(SlayerProvider.Breath_CAP, null).getXP(), player.getCapability(SlayerProvider.Breath_CAP, null).getLevel(), player.getCapability(SlayerProvider.Breath_CAP, null).getMaxMana()), (EntityPlayerMP) player );
+                            Networking.sendTo(new Slayer(player.getCapability(SlayerProvider.Breath_CAP, null)), (EntityPlayerMP) player );
                         }
                     //Curse of the Dark: Form 4
-                    if(mana >= 25 && player.getCapability(TechProvider.TECH_CAP, null).getTech() == 4 && mana >= 25){
+                    if( form == 4 && mana >= 25){
                         ball.posX = player.posX + look.x;
                         ball.posY= player.posY + player.eyeHeight -1;
                         ball.posZ=player.posZ + look.z;
-                        ball.setRotationYawHead(player.rotationYawHead);
+                        ball.setLocationAndAngles(player.posX + look.x * 1.5, player.posY + player.eyeHeight -1, player.posZ + look.z * 1.5 , player.rotationYaw, player.rotationPitch);
                         ball.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 3F, 0.0F);
                         worldIn.spawnEntity((Entity) ball);
                         player.sendMessage(new TextComponentString("Shadow Breathing 4th Form: Curse of the Dark"));
                         player.getCapability(SlayerProvider.Breath_CAP, null).setMana(mana - 25.0F);
-                        Networking.sendTo(new SlayerMessage(player.getCapability(SlayerProvider.Breath_CAP, null).getBreath(),player.getCapability(SlayerProvider.Breath_CAP, null).getMana(), player.getCapability(SlayerProvider.Breath_CAP, null).getXP(), player.getCapability(SlayerProvider.Breath_CAP, null).getLevel(), player.getCapability(SlayerProvider.Breath_CAP, null).getMaxMana()), (EntityPlayerMP) player );
+                        Networking.sendTo(new Slayer(player.getCapability(SlayerProvider.Breath_CAP, null)), (EntityPlayerMP) player );
                         tick=200;
                     }
                     //Blessing of the Dark: Form 5
@@ -109,11 +112,11 @@ public class ShadowSwords extends ItemSword {
                             player.addPotionEffect(new PotionEffect(MobEffects.INVISIBILITY, 80, 1,true, false));
                             player.sendMessage(new TextComponentString("Shadow Breathing 5th Form: Blessing of the Dark"));
                             player.getCapability(SlayerProvider.Breath_CAP, null).setMana(mana - 20.0F);
-                            Networking.sendTo(new SlayerMessage(player.getCapability(SlayerProvider.Breath_CAP, null).getBreath(),player.getCapability(SlayerProvider.Breath_CAP, null).getMana(), player.getCapability(SlayerProvider.Breath_CAP, null).getXP(), player.getCapability(SlayerProvider.Breath_CAP, null).getLevel(), player.getCapability(SlayerProvider.Breath_CAP, null).getMaxMana()), (EntityPlayerMP) player );
+                            Networking.sendTo(new Slayer(player.getCapability(SlayerProvider.Breath_CAP, null)), (EntityPlayerMP) player );
                             tick = 150;
                         }
 
-                    else if (mana <= 24 || mana <= 19 && player.getCapability(TechProvider.TECH_CAP, null).getTech() == 5){
+                    else if (mana <= 24 || mana <= 19 && form == 5){
                         player.sendMessage(new TextComponentString("You Have Run Out of Breath"));
                     }
 

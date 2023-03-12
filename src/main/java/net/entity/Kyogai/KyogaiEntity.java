@@ -1,18 +1,25 @@
 package net.entity.Kyogai;
 
-import com.google.common.base.Predicate;
 import net.entity.projectiles.Shadow.EntityShadowslash;
-import net.minecraft.entity.*;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IRangedAttackMob;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.BossInfo;
+import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.World;
-import net.util.capabilities.slayer.SlayerProvider;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -21,10 +28,14 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-import javax.annotation.Nullable;
-
 public class KyogaiEntity extends EntityMob implements IRangedAttackMob , IAnimatable{
     private AnimationFactory factory = new AnimationFactory(this);
+    private static final DataParameter<Boolean> SWINGING_ARMS = EntityDataManager.<Boolean>createKey(KyogaiEntity.class, DataSerializers.BOOLEAN);
+    public KyogaiEntity(World worldIn) {
+        super(worldIn);
+        this.enableBossBar();
+
+    }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
     {
@@ -32,13 +43,30 @@ public class KyogaiEntity extends EntityMob implements IRangedAttackMob , IAnima
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.model.walk", true));
             return PlayState.CONTINUE;
         }
+
         event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.model.idle", true));
         return PlayState.CONTINUE;
     }
-    public KyogaiEntity(World worldIn) {
-        super(worldIn);
+    protected BossInfoServer bossInfoServer;
 
+    public void enableBossBar() {
+        if (!this.world.isRemote && this.bossInfoServer == null) {
+            this.bossInfoServer = new BossInfoServer(this.getDisplayName(), BossInfo.Color.RED, BossInfo.Overlay.NOTCHED_10);
+            this.bossInfoServer.setVisible(true);
+        }
     }
+
+    @Override
+    public void onLivingUpdate() {
+        this.updateArmSwingProgress();
+        super.onLivingUpdate();
+
+        // Bossbar
+        if (this.bossInfoServer != null) {
+            this.bossInfoServer.setPercent(this.getHealth() / this.getMaxHealth());
+        }
+    }
+
     protected void initEntityAI()
     {
 
@@ -68,7 +96,7 @@ public class KyogaiEntity extends EntityMob implements IRangedAttackMob , IAnima
 
     @Override
     public void registerControllers(AnimationData animationData) {
-        animationData.addAnimationController(new AnimationController(this, "controller", 400, this::predicate));
+        animationData.addAnimationController(new AnimationController(this, "controller", 0, this::predicate));
     }
 
     @Override
@@ -134,9 +162,15 @@ public class KyogaiEntity extends EntityMob implements IRangedAttackMob , IAnima
         this.launchSlashToEntity(0, target);
     }
 
-    @Override
-    public void setSwingingArms(boolean swingingArms) {
+    @SideOnly(Side.CLIENT)
+    public boolean isSwingingArms()
+    {
+        return ((Boolean)this.dataManager.get(SWINGING_ARMS)).booleanValue();
+    }
 
+    public void setSwingingArms(boolean swingingArms)
+    {
+        this.dataManager.set(SWINGING_ARMS, Boolean.valueOf(swingingArms));
     }
 
     //public float getEyeHeight()

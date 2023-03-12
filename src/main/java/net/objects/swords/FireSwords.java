@@ -26,8 +26,7 @@ import static net.minecraftforge.fml.relauncher.Side.CLIENT;
 
 public class FireSwords extends ItemSword{
     int tick = 0;
-    EnumHand hand_;
-    boolean rengoku_flag = false, siranui_flag = false, enten_flag = false, enko_flag = false;
+
 
     public FireSwords(String name, ToolMaterial material) {
         super(material);
@@ -56,7 +55,7 @@ public class FireSwords extends ItemSword{
                     }
                 } else if (player.getCapability(SlayerProvider.Breath_CAP, null).getBreath() > 2) {
                     player.sendMessage(new TextComponentString("You Have To Learn ")
-                            .appendSibling(new TextComponentString("Fire Breathing").setStyle(new Style().setColor(TextFormatting.DARK_PURPLE)))
+                            .appendSibling(new TextComponentString("Fire Breathing").setStyle(new Style().setColor(TextFormatting.DARK_RED)))
                             .appendSibling(new TextComponentString(" To Use This Sword.")));
                 }}}
         item.damageItem(0, player);
@@ -73,8 +72,9 @@ public class FireSwords extends ItemSword{
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn){
         String color = TextFormatting.DARK_RED.toString();
         String reset = TextFormatting.RESET.toString();
-        if(GuiScreen.isShiftKeyDown())
+        if(GuiScreen.isShiftKeyDown()){
             tooltip.add("Sword which can only be activated by the ones who breath " + color + "Fire");
+        }
         else{
             tooltip.add("Press" + color + " Shift " + reset + "to see more information");
         }

@@ -1,5 +1,6 @@
 package net.entity.projectiles.Shadow;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.MobEffects;
@@ -31,7 +32,7 @@ public class EntityShadowball extends EntityThrowable {
         if(!this.world.isRemote){
             setDead();
 
-            if(result.entityHit instanceof EntityLivingBase){
+            if(result.entityHit != null && result.entityHit instanceof EntityLivingBase){
                 EntityLivingBase entity = (EntityLivingBase)result.entityHit;
                 entity.attackEntityFrom(DamageSource.causeThrownDamage(this, this.thrower), (float)4 + (4* entity.getAttackingEntity().getCapability(TechProvider.TECH_CAP, null).getSkill()));
                 entity.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 100, 3));
