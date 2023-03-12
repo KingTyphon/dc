@@ -33,7 +33,7 @@ public class WaterSwords extends ItemSword{
         String color = TextFormatting.DARK_AQUA.toString();
         String reset = TextFormatting.RESET.toString();
         if(GuiScreen.isShiftKeyDown())
-            tooltip.add("Sword which can only be activated by the ones who breath " + color + "The Water");
+            tooltip.add("Sword which can only be activated by the ones who breath " + color + "Water");
         else{
             tooltip.add("Press" + color + " Shift " + reset + "to see more information");
         }

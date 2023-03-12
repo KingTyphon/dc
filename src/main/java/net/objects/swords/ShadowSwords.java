@@ -152,7 +152,7 @@ public class ShadowSwords extends ItemSword {
         String color = TextFormatting.DARK_PURPLE.toString();
         String reset = TextFormatting.RESET.toString();
         if(GuiScreen.isShiftKeyDown())
-            tooltip.add("Sword which can only be activated by the ones who breath " + color + "The Shadow");
+            tooltip.add("Sword which can only be activated by the ones who breath " + color + "Shadow");
         else{
             tooltip.add("Press" + color + " Shift " + reset + "to see more information");
         }

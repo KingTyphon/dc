@@ -26,10 +26,10 @@ public class InsectSwords extends ItemSword {
     @SideOnly(CLIENT)
     @Override
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn){
-        String color = TextFormatting.DARK_RED.toString();
+        String color = TextFormatting.DARK_GREEN.toString();
         String reset = TextFormatting.RESET.toString();
         if(GuiScreen.isShiftKeyDown())
-            tooltip.add("Sword which can only be activated by the ones who breath " + color + "the insects");
+            tooltip.add("Sword which can only be activated by the ones who breath " + color + "Insect");
         else{
             tooltip.add("Press" + color + " Shift " + reset + "to see more information");
         }

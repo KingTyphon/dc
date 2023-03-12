@@ -28,6 +28,7 @@ public class Slayer implements IMessage {
         this.XP = lb.getXP();
         this.Level = lb.getLevel();
         this.MaxMana = lb.getMaxMana();
+
     }
     public Slayer(int breath, float mana, int xp, int level, int maxMana){
         this.Breath = breath;

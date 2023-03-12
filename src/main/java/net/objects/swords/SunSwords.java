@@ -29,7 +29,7 @@ public class SunSwords extends ItemSword{
         String color = TextFormatting.GOLD.toString();
         String reset = TextFormatting.RESET.toString();
         if(GuiScreen.isShiftKeyDown())
-            tooltip.add("Sword which can only be activated by the ones who breath " + color + "The Sun");
+            tooltip.add("Sword which can only be activated by the ones who breath " + color + "Sun");
         else{
             tooltip.add("Press" + color + " Shift " + reset + "to see more information");
         }

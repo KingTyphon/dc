@@ -19,7 +19,6 @@ public class PlayerDataManager {
     public static void updateClientSlayer(EntityPlayerMP player, ISlayerCapability slayer){
         if(player != null && slayer != null){
             Networking.sendTo(new SlayerMessage(slayer),  player);
-            player.sendMessage(new TextComponentString("Client Updated"));
         }
     }
 }

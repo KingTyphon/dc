@@ -31,7 +31,7 @@ public class FlowerSwords extends ItemSword {
         String reset = TextFormatting.RESET.toString();
         if (GuiScreen.isShiftKeyDown())
         {
-            tooltip.add("Sword which can only be activated by the ones who breath " + color + "Flowers");
+            tooltip.add("Sword which can only be activated by the ones who breath " + color + "Flower");
         }
         else {
             tooltip.add("Press" + color + " Shift " + reset + "to see more information");

@@ -3,28 +3,32 @@ package net.networking.messages;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.util.text.TextComponentString;
 import net.networking.messages.PlayerDataManager;
 import net.util.capabilities.slayer.ISlayerCapability;
 
 public class PlayerManager {
-    public static void increaseXPUpdate(EntityLivingBase livingBase, float amount){
-    if(!livingBase.world.isRemote){
+    public static void increaseXPUpdate(EntityLivingBase livingBase, int amount){
         ISlayerCapability slayer = PlayerDataManager.getSlayer(livingBase);
+        int maxXp = slayer.getMaxXp();
+        int xpNew=(slayer.getXP() + amount);
+        if(maxXp == 0 ){
+            slayer.setMaxXp((slayer.getLevel() * 150)+100);
+        }
+        if(slayer != null && maxXp != 0){
 
-        if(slayer != null){
-            slayer.setXP(Math.min(slayer.getXP() , slayer.getMaxXp()));
+            slayer.setXP(Math.min(xpNew, maxXp));
         }
         if(livingBase instanceof EntityPlayerMP){
             if(slayer !=null) {
                 PlayerDataManager.updateClientSlayer((EntityPlayerMP) livingBase, slayer);
             }
         }
-    }
+
 }
 
 
     public static void increaseManaUpdater(EntityLivingBase lb, float amount) {
-        if (!lb.world.isRemote) {
             ISlayerCapability slayer = PlayerDataManager.getSlayer(lb);
 
             if (slayer != null) {
@@ -34,7 +38,6 @@ public class PlayerManager {
                 if (slayer != null) {
                     PlayerDataManager.updateClientSlayer((EntityPlayerMP) lb, slayer);
                 }
-            }
         }
     }
 }

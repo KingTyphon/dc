@@ -33,7 +33,7 @@ public class WindSwords extends ItemSword{
         String color = TextFormatting.BLUE.toString();
         String reset = TextFormatting.RESET.toString();
         if(GuiScreen.isShiftKeyDown())
-            tooltip.add("Sword which can only be activated by the ones who breath " + color + "The Wind");
+            tooltip.add("Sword which can only be activated by the ones who breath " + color + "Wind");
         else{
             tooltip.add("Press" + color + " Shift " + reset + "to see more information");
         }

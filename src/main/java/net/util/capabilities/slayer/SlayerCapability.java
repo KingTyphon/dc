@@ -25,8 +25,8 @@ public class SlayerCapability implements ISlayerCapability {
 
   @Override
   public void levelUp() {
-    if(this.xp == maxXp) {
-      this.maxXp += 20 + 20/maxXp;
+    if(this.xp == maxXp || this.xp >= maxXp) {
+      this.maxXp += 100 + (150*level);
       this.xp = 0;
       this.level +=1;
     }

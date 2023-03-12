@@ -44,7 +44,7 @@ public class SlayerToken extends Item {
 
             if(playerIn.hasCapability(SlayerProvider.Breath_CAP, null)){
                 playerIn.getCapability(SlayerProvider.Breath_CAP, null).setMaxMana(250);
-                playerIn.getCapability(SlayerProvider.Breath_CAP, null).setLevel(0);
+                playerIn.getCapability(SlayerProvider.Breath_CAP, null).setLevel(1);
             }
             if (number == 1) {
                 playerIn.getCapability(SlayerProvider.Breath_CAP, null).setBreath(1);

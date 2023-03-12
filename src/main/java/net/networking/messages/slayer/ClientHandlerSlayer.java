@@ -2,6 +2,7 @@ package net.networking.messages.slayer;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -18,7 +19,7 @@ public class ClientHandlerSlayer implements IMessageHandler<SlayerMessage, IMess
     public IMessage onMessage(SlayerMessage message, MessageContext ctx) {
 
         Minecraft mc = Minecraft.getMinecraft();
-        Minecraft.getMinecraft().addScheduledTask(() -> {
+        mc.addScheduledTask(() -> {
             EntityPlayerSP player = mc.player;
             ISlayerCapability slayer = player.getCapability(SlayerProvider.Breath_CAP, null);
             ISlayerCapability slayerUpdate = message.capability;

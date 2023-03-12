@@ -12,6 +12,7 @@ import net.networking.messages.tech.Tech;
 import net.util.handlers.Reference;
 
 public class Networking {
+    private static String CHANNEL = "demon";
     public static SimpleNetworkWrapper INSTANCE;
 
 public static void init(){
@@ -27,13 +28,20 @@ public static void init(){
 }
 //Server
 public static void sendToServer(IMessage message){
+    if(message !=null){
     INSTANCE.sendToServer(message);
+    }
 }
 //Client
 public static void sendTo(IMessage message, EntityPlayerMP player){
+    if(message != null){
     INSTANCE.sendTo(message, player);
+    }
 }
 public static void sendToAll(IMessage message){
     INSTANCE.sendToAll(message);
+}
+static{
+    INSTANCE = new SimpleNetworkWrapper(CHANNEL);
 }
 }

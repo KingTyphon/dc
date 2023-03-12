@@ -81,9 +81,13 @@ public class KeyInputHandler {
         EntityPlayer player1 = Minecraft.getMinecraft().player;
         ISlayerCapability playerBreath = player1.getCapability(SlayerProvider.Breath_CAP, null);
 
-        isPressed = ClientProxy.breath.isKeyDown();
-        if(isPressed) {
-            timePressed += 1;
+        if(ClientProxy.breath.isKeyDown()) {
+            isPressed =true;
+            timePressed +=1;
+        }else{
+            isPressed = false;
+            PlayerManager.increaseManaUpdater(player1, timePressed);
+            timePressed = 0;
         }
     }
     @SubscribeEvent
@@ -117,10 +121,9 @@ public class KeyInputHandler {
             Networking.sendToServer(new Slayer(player1.getCapability(SlayerProvider.Breath_CAP, null).getBreath(), player1.getCapability(SlayerProvider.Breath_CAP, null).getMana(), player1.getCapability(SlayerProvider.Breath_CAP, null).getXP(), player1.getCapability(SlayerProvider.Breath_CAP, null).getLevel(), player1.getCapability(SlayerProvider.Breath_CAP, null).getMaxMana()));
             Networking.sendToServer(new Tech(player1));
         }
-        if(ClientProxy.breath.isKeyDown() && player1.getCapability(SlayerProvider.Breath_CAP, null).getMana() != player1.getCapability(SlayerProvider.Breath_CAP, null).getMaxMana()){
-            PlayerManager.increaseManaUpdater(player1, timePressed);
-            timePressed = 0;
-        }
+   /*     if(ClientProxy.breath.isKeyDown() && player1.getCapability(SlayerProvider.Breath_CAP, null).getMana() != player1.getCapability(SlayerProvider.Breath_CAP, null).getMaxMana()){
+
+        }*/
     }
 }
 

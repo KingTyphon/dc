@@ -55,7 +55,6 @@ public class DemonCraft
 
         GeckoLib.initialize();
         //Sends events for things needed to be called before initialization
-        Networking.init();
         CapabilityManager.INSTANCE.register(ISlayerCapability.class, new IStorage(), SlayerCapability::new);
         CapabilityManager.INSTANCE.register(iTechCapability.class, new ITechStorage(), TechCapability::new);
         RenderHandler.registerEntityRenderers();
@@ -65,6 +64,7 @@ public class DemonCraft
     @EventHandler
     public static void init(FMLInitializationEvent event) {
         proxy.registerClientStuff();
+        Networking.init();
 
     }
     @EventHandler
