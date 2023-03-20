@@ -8,19 +8,23 @@ import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ResourceLocation;
+import net.util.handlers.Reference;
 
 public class SkillTreeGui extends GuiScreen {
-    public static final int ID = 1;
+    final ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/gui/skilltreegui.png");
+    static final int ID = 1;
     EntityPlayer player = Minecraft.getMinecraft().player;
     int guiWidth = 200;
     int guiHeight = 178;
-
-    int centerX = (width / 2) - guiWidth / 2;
-    int centerY = (height / 2) - guiHeight / 2;
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks){
+        drawDefaultBackground();
+        Minecraft.getMinecraft().renderEngine.bindTexture(texture);
+        int centerX = (width / 2) - guiWidth / 2;
+        int centerY = (height / 2) - guiHeight / 2;
         drawTexturedModalRect(centerX, centerY, 0, 0, guiWidth, guiHeight);
-        drawEntityOnScreen(200, 180, 30, mouseX-200, mouseY-180, player);
+        drawEntityOnScreen(205, 175, 25, mouseX-200, mouseY-180, player);
     }
     public static void drawEntityOnScreen(int posX, int posY, int scale, float mouseX, float mouseY,
                                           EntityLivingBase ent) {

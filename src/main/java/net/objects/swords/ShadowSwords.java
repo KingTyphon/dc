@@ -55,10 +55,11 @@ public class ShadowSwords extends ItemSword {
                     else if (player.getCapability(SlayerProvider.Breath_CAP, null).getBreath() == 4) {
                         EntityShadowball ball = new EntityShadowball(worldIn);
                         EntityShadowslash slash = new EntityShadowslash(worldIn);
+                        int skill = player.getCapability(TechProvider.TECH_CAP, null).getSkill();
                         float reach = 16f;
                         float mana = player.getCapability(SlayerProvider.Breath_CAP, null).getMana();
                         int form = player.getCapability(TechProvider.TECH_CAP, null).getTech();
-
+                        ball.skillAttach(skill);
                         Vec3d eyepos = player.getPositionEyes(1f);
                         Vec3d lookangle = player.getLook(1f);
                         Vec3d vec = eyepos.addVector(lookangle.x*reach, lookangle.y*reach, lookangle.z*reach);

@@ -6,7 +6,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.ModMetadata;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -21,7 +20,7 @@ import net.util.capabilities.slayer.IStorage;
 import net.util.capabilities.slayer.SlayerCapability;
 import net.util.capabilities.techniquecapability.ITechStorage;
 import net.util.capabilities.techniquecapability.TechCapability;
-import net.util.capabilities.techniquecapability.iTechCapability;
+import net.util.capabilities.techniquecapability.ITechCapability;
 import net.util.handlers.Reference;
 import net.util.handlers.RenderHandler;
 import net.world.Events;
@@ -56,7 +55,7 @@ public class DemonCraft
         GeckoLib.initialize();
         //Sends events for things needed to be called before initialization
         CapabilityManager.INSTANCE.register(ISlayerCapability.class, new IStorage(), SlayerCapability::new);
-        CapabilityManager.INSTANCE.register(iTechCapability.class, new ITechStorage(), TechCapability::new);
+        CapabilityManager.INSTANCE.register(ITechCapability.class, new ITechStorage(), TechCapability::new);
         RenderHandler.registerEntityRenderers();
 
 

@@ -48,7 +48,7 @@ public class SlayerToken extends Item {
             }
             if (number == 1) {
                 playerIn.getCapability(SlayerProvider.Breath_CAP, null).setBreath(1);
-                playerIn.sendMessage(new TextComponentString("You Have Learned ").appendSibling(new TextComponentString("Fire Breathing").setStyle(new Style().setColor(TextFormatting.DARK_RED))));
+                playerIn.sendMessage(new TextComponentString("You Have Learned ").appendSibling(new TextComponentString("Flame Breathing").setStyle(new Style().setColor(TextFormatting.DARK_RED))));
                 Networking.sendToServer(new Slayer(1, 0.0F, 0, 1, 250));
                 Networking.sendTo(new Slayer(1, 0.0F, 0, 1, 250), (EntityPlayerMP) playerIn);
 

@@ -1,17 +1,14 @@
 package net.util.capabilities.techniquecapability;
 
 import net.minecraft.nbt.NBTBase;
-import net.minecraft.nbt.NBTPrimitive;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagInt;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
-import net.util.capabilities.slayer.ISlayerCapability;
 
-public class ITechStorage implements Capability.IStorage<iTechCapability>{
+public class ITechStorage implements Capability.IStorage<ITechCapability>{
 
     @Override
-    public NBTBase writeNBT(Capability<iTechCapability> capability, iTechCapability instance, EnumFacing side){
+    public NBTBase writeNBT(Capability<ITechCapability> capability, ITechCapability instance, EnumFacing side){
         NBTTagCompound tag = new NBTTagCompound();
         tag.setInteger("tech", instance.getTech());
         tag.setInteger("sp", instance.getSp());
@@ -23,7 +20,7 @@ public class ITechStorage implements Capability.IStorage<iTechCapability>{
         return tag;
     }
     @Override
-    public void readNBT(Capability<iTechCapability> capability, iTechCapability instance, EnumFacing side, NBTBase nbt)
+    public void readNBT(Capability<ITechCapability> capability, ITechCapability instance, EnumFacing side, NBTBase nbt)
     {
         int tech = ((NBTTagCompound) nbt).getInteger("tech");
         int sp = ((NBTTagCompound) nbt).getInteger("sp");

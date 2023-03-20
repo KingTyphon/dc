@@ -1,10 +1,6 @@
 package net.util.capabilities.techniquecapability;
 
-import net.minecraft.client.Minecraft;
-
-import java.util.ArrayList;
-
-public class TechCapability implements iTechCapability {
+public class TechCapability implements ITechCapability {
     private int tech;
     private int sp;
     private int health;

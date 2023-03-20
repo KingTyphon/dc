@@ -43,8 +43,8 @@ public class Events {
             player.getCapability(TechProvider.TECH_CAP, null).setTech(event.getOriginal().getCapability(TechProvider.TECH_CAP, null).getTech());
             Networking.sendTo(new Tech(event.getOriginal()), (EntityPlayerMP) player);
             playerNew.copyFrom(playerOld);
-            PlayerDataManager.updateClientSlayer((EntityPlayerMP) player, playerOld);
-            //Networking.sendTo(new Slayer(playerNew.getBreath(), playerNew.getMana(), playerNew.getXP(), playerNew.getLevel(), playerNew.getMaxMana()), player);
+            PlayerDataManager.updateClientSlayer(player, playerOld);
+            Networking.sendTo(new Slayer(playerNew.getBreath(), playerNew.getMana(), playerNew.getXP(), playerNew.getLevel(), playerNew.getMaxMana()), player);
 
             //Sends the stats over if they have a breathing technique
             if (player.getCapability(SlayerProvider.Breath_CAP, null).getBreath() > 0) {
@@ -52,15 +52,15 @@ public class Events {
                 if (!player.isInWater() && !player.isCreative()) player.addVelocity(0F, 0.01F, 0F);
                 player.fallDistance = 0.5F;
                 player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(32 + (1 * player.getCapability(TechProvider.TECH_CAP, null).getHealth()));
-                player.getEntityAttribute(SharedMonsterAttributes.ATTACK_SPEED).setBaseValue(1);
+                //player.getEntityAttribute(SharedMonsterAttributes.ATTACK_SPEED).setBaseValue(-1.4000000953674316D);
                 player.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3 + (int)(.25 * player.getCapability(TechProvider.TECH_CAP, null).getStrength()));
             }
         }
-        //Does this to make sure it copies the stats over
+
         if (!event.isWasDeath() && player != null) {
             playerNew.copyFrom(playerOld);
             PlayerDataManager.updateClientSlayer((EntityPlayerMP) playerNew, playerOld);
-            //Networking.sendTo(new Slayer(playerOld.getBreath(), playerOld.getMana(), playerOld.getXP(), playerOld.getLevel(), playerOld.getMaxMana()), (EntityPlayerMP) player);
+            Networking.sendTo(new Slayer(playerOld.getBreath(), playerOld.getMana(), playerOld.getXP(), playerOld.getLevel(), playerOld.getMaxMana()), (EntityPlayerMP) player);
 
             player.getCapability(TechProvider.TECH_CAP, null).setTech(event.getOriginal().getCapability(TechProvider.TECH_CAP, null).getTech());
             Networking.sendTo(new Tech(event.getOriginal()), (EntityPlayerMP) player);
@@ -112,9 +112,9 @@ public class Events {
                 if (!player.isInWater() && !player.isCreative()) player.addVelocity(0F, 0.01F, 0F);
                 player.fallDistance = 0.5F;
                 player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(32 + (1 * player.getCapability(TechProvider.TECH_CAP, null).getHealth()));
-                player.getEntityAttribute(SharedMonsterAttributes.ATTACK_SPEED).setBaseValue(1);
+                //player.getEntityAttribute(SharedMonsterAttributes.ATTACK_SPEED).setBaseValue(-1.4);
                 player.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3 + (int)(.25 * player.getCapability(TechProvider.TECH_CAP, null).getStrength()));
-                player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.12D);
+                player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.12D + (.01d * player.getCapability(TechProvider.TECH_CAP,null).getSpeed()));
 
             } if(player.getCapability(SlayerProvider.Breath_CAP, null).getMana() < player.getCapability(SlayerProvider.Breath_CAP, null).getMaxMana()){
                 player.getCapability(SlayerProvider.Breath_CAP, null).setMana(player.getCapability(SlayerProvider.Breath_CAP, null).getMana() + .025F);

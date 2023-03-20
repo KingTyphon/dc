@@ -4,18 +4,19 @@ import net.minecraftforge.common.util.INBTSerializable;
 
 public interface ISlayerCapability {
 
-    public int getLevel();
-    public int getMaxXp();
-    public void setMaxXp(int maxXp);
-    public int getXP();
     public void levelUp();
     public float getMana();
+    public int getXP();
+    public int getLevel();
+    public int getMaxXp();
+    public int getBreath();
+    public int getMaxMana();
+
+    public void setMaxXp(int maxXp);
     public void setXP(int xp);
     public void setLevel(int level);
     public void setMana(float mana);
-    public int getBreath();
     public void setBreath(int breath);
-    public int getMaxMana();
     public void setMaxMana(int maxmana);
     public void copyFrom(ISlayerCapability player);
 }

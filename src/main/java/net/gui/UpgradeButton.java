@@ -7,11 +7,12 @@ import net.minecraft.util.ResourceLocation;
 import net.util.handlers.Reference;
 
 public class UpgradeButton extends GuiButton {
-    final ResourceLocation texture1 = new ResourceLocation(Reference.MODID, "textures/gui/button.png");
+    protected final ResourceLocation texture1 = new ResourceLocation(Reference.MODID, "textures/gui/button.png");
     int buttonWidth = 22;
     int ButtonHeight = 22;
     int u = 0;
     int v = 0;
+
 
     public UpgradeButton(int buttonId, int x, int y, String buttonText) {
         super(buttonId, x, y, 22, 22, "");
@@ -21,9 +22,11 @@ public class UpgradeButton extends GuiButton {
     public void drawButton(Minecraft mc, int mouseX, int mouseY, float partialTicks) {
         if(this.visible == true) {
             mc.getTextureManager().bindTexture(texture1);
-            drawTexturedModalRect(x - 22, y + 10, u, v, buttonWidth, ButtonHeight);
-            drawTexturedModalRect(x - 22, y + 32, u, v, buttonWidth, ButtonHeight);
-            drawTexturedModalRect(x - 22, y + 54, u, v, buttonWidth, ButtonHeight);
+            this.drawTexturedModalRect(x - 22, y + 10, u, v, buttonWidth, ButtonHeight);
+            this.drawTexturedModalRect(x - 22, y + 32, u, v, buttonWidth, ButtonHeight);
+            this.drawTexturedModalRect(x - 22, y + 54, u, v, buttonWidth, ButtonHeight);
+
+
         }
 
         }

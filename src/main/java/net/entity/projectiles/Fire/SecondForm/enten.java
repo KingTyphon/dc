@@ -35,7 +35,7 @@ public class enten extends abs_enten {
                 result.entityHit.attackEntityFrom(DamageSource.causeThornsDamage(this.shootingEntity), 12.0F);
 
                 if(result.entityHit instanceof EntityLivingBase)
-                    ((EntityLivingBase) result.entityHit).addPotionEffect(new PotionEffect(MobEffects.LEVITATION, 50));
+                    ((EntityLivingBase) result.entityHit).addPotionEffect(new PotionEffect(MobEffects.LEVITATION, 40, 1, false, false));
                 applyEnchantments(this.shootingEntity, result.entityHit);
             }
         setDead();

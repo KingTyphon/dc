@@ -1,16 +1,27 @@
 package net.proxy;
 
 import net.DemonCraft;
+import net.entity.projectiles.Fire.FifthForm.enkoHIT_head;
+import net.entity.projectiles.Fire.FifthForm.enko_head;
+import net.entity.projectiles.Fire.FirstForm.siranui;
+import net.entity.projectiles.Fire.NinthForm.HIT_rengoku;
+import net.entity.projectiles.Fire.NinthForm.rengoku;
+import net.entity.projectiles.Fire.SecondForm.enten;
+import net.entity.projectiles.Fire.SecondForm.enten_HIT;
 import net.entity.projectiles.Shadow.EntityShadowball;
 import net.entity.projectiles.Shadow.EntityShadowslash;
+import net.entity.projectiles.Thunder.lightning.customLightning;
+import net.entity.render.Flame.FifthForm.Render_enko_hit;
+import net.entity.render.Flame.FifthForm.Render_head_enko;
+import net.entity.render.Flame.*;
 import net.entity.render.shadow.RenderShadowball;
 import net.entity.render.shadow.RenderShadowslash;
+import net.entity.render.thunder.Render_Lbolt;
 import net.gui.GuiBreathBar;
 import net.gui.GuiHandler;
 import net.init.EntityInit;
 import net.keys.KeyInputHandler;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
@@ -20,7 +31,6 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.util.handlers.EventHandler;
 import net.util.handlers.RegistryHandler;
-import net.util.handlers.RenderHandler;
 import org.lwjgl.input.Keyboard;
 
 
@@ -38,7 +48,48 @@ public class ClientProxy extends ServerProxy {
         ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(item.getRegistryName(), id));
         RenderingRegistry.registerEntityRenderingHandler(EntityShadowball.class, RenderShadowball::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityShadowslash.class, RenderShadowslash::new);
-    }
+        RenderingRegistry.registerEntityRenderingHandler(customLightning.class, Render_Lbolt::new);
+        RenderingRegistry.registerEntityRenderingHandler(HIT_rengoku.class, Render_rengoku::new);
+        RenderingRegistry.registerEntityRenderingHandler(enten_HIT.class, Render_enten_hit::new);
+        RenderingRegistry.registerEntityRenderingHandler(enten.class, Render_enten::new);
+        RenderingRegistry.registerEntityRenderingHandler(enko_head.class, Render_head_enko::new);
+        RenderingRegistry.registerEntityRenderingHandler(enkoHIT_head.class, Render_enko_hit::new);
+        RenderingRegistry.registerEntityRenderingHandler(rengoku.class, Render_rengoku2::new);
+        RenderingRegistry.registerEntityRenderingHandler(siranui.class, Render_siranui::new);
+        /*RenderingRegistry.registerEntityRenderingHandler(Takitubo.class, Render_takitubo::new);
+        RenderingRegistry.registerEntityRenderingHandler(Nagi.class, Render_nagi::new);
+        RenderingRegistry.registerEntityRenderingHandler(Kanten.class, Render_kanten::new);
+        RenderingRegistry.registerEntityRenderingHandler(Seisei.class, Render_seisei::new);
+        RenderingRegistry.registerEntityRenderingHandler(Sei_head.class, Render_head_seisei::new);
+        RenderingRegistry.registerEntityRenderingHandler(HIT_minamo.class, Render_minamo::new);
+        RenderingRegistry.registerEntityRenderingHandler(minamo.class, Render_minamo2::new);
+        RenderingRegistry.registerEntityRenderingHandler(lightning_custom.class, Render_lightning::new);
+        RenderingRegistry.registerEntityRenderingHandler(lightning_custom2.class, Render_lightning2::new);
+
+
+
+        RenderingRegistry.registerEntityRenderingHandler(kasumi.class, Render_kasumi::new);
+        RenderingRegistry.registerEntityRenderingHandler(kasumi_HIT.class, Render_kasumi_HIT::new);
+        RenderingRegistry.registerEntityRenderingHandler(oboro.class,Render_oboro_slash::new);
+        RenderingRegistry.registerEntityRenderingHandler(nejire.class, Render_nejire::new);
+        RenderingRegistry.registerEntityRenderingHandler(HIT_sogi.class, Render_sogi::new);
+        RenderingRegistry.registerEntityRenderingHandler(sogi.class, Render_sogi2::new);
+        RenderingRegistry.registerEntityRenderingHandler(kokuhuu.class, Render_kokuhuu::new);
+        RenderingRegistry.registerEntityRenderingHandler(idaten.class, Render_idaten::new);
+        RenderingRegistry.registerEntityRenderingHandler(sinato.class, Render_sinato::new);
+        RenderingRegistry.registerEntityRenderingHandler(sinato_hit.class, Render_sinato_hit::new);
+        RenderingRegistry.registerEntityRenderingHandler(kokuhuu_hit.class, Render_kokuhuu_hit::new);
+        RenderingRegistry.registerEntityRenderingHandler(HIT_hekireki.class, Render_HIT_hekireki::new);
+        RenderingRegistry.registerEntityRenderingHandler(tawamure.class, Render_tawamure::new);
+        RenderingRegistry.registerEntityRenderingHandler(moon.class, Rendermoon::new);
+        RenderingRegistry.registerEntityRenderingHandler(kataware_hit.class, Renderkataware_hit::new);
+        RenderingRegistry.registerEntityRenderingHandler(kataware.class, Renderkataware::new);
+        RenderingRegistry.registerEntityRenderingHandler(kataware_hit.class, Renderkataware_hit::new);
+        RenderingRegistry.registerEntityRenderingHandler(kataware.class, Renderkataware::new);
+        RenderingRegistry.registerEntityRenderingHandler(tukibae_hit.class, Rendertukibae_hit::new);
+        RenderingRegistry.registerEntityRenderingHandler(tukibae.class, Rendertukibae::new);
+        RenderingRegistry.registerEntityRenderingHandler(rinbi.class, Renderrinbi::new);
+*/    }
     @Override
     public void registerClientStuff(){
         EntityInit.registerEntities();

@@ -73,7 +73,6 @@ public class customLightning extends EntityWeatherEffect
             else if (!this.effectOnly)
             {
 
-                //	List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, new AxisAlignedBB(this.posX - 3.0D, this.posY - 3.0D, this.posZ - 3.0D, this.posX + 3.0D, this.posY + 6.0D + 3.0D, this.posZ + 3.0D));
 
             }
         }
