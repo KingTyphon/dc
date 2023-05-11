@@ -124,6 +124,7 @@ public class Events {
             if (player.getCapability(SlayerProvider.Breath_CAP, null).getXP() >= player.getCapability(SlayerProvider.Breath_CAP, null).getMaxXp()) {
                 player.getCapability(SlayerProvider.Breath_CAP, null).levelUp();
                 player.getCapability(TechProvider.TECH_CAP, null).setSp(player.getCapability(TechProvider.TECH_CAP, null).getSp() + 1);
+                Networking.sendTo(new Tech(event.player), (EntityPlayerMP) event.player);
                 player.sendMessage(new TextComponentString("You are now Level " + player.getCapability(SlayerProvider.Breath_CAP, null).getLevel()));
             }
         }

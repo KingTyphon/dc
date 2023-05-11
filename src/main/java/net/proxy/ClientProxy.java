@@ -11,12 +11,19 @@ import net.entity.projectiles.Fire.SecondForm.enten_HIT;
 import net.entity.projectiles.Shadow.EntityShadowball;
 import net.entity.projectiles.Shadow.EntityShadowslash;
 import net.entity.projectiles.Thunder.lightning.customLightning;
+import net.entity.projectiles.Wind.Form6.kokuhuu_hit;
+import net.entity.projectiles.Wind.itaden.idaten;
+import net.entity.projectiles.Wind.sinato;
+import net.entity.projectiles.Wind.sinato_hit;
+import net.entity.projectiles.Wind.sogi.HIT_sogi;
+import net.entity.projectiles.Wind.sogi.sogi;
 import net.entity.render.Flame.FifthForm.Render_enko_hit;
 import net.entity.render.Flame.FifthForm.Render_head_enko;
 import net.entity.render.Flame.*;
 import net.entity.render.shadow.RenderShadowball;
 import net.entity.render.shadow.RenderShadowslash;
 import net.entity.render.thunder.Render_Lbolt;
+import net.entity.render.wind.*;
 import net.gui.GuiBreathBar;
 import net.gui.GuiHandler;
 import net.init.EntityInit;
@@ -56,6 +63,12 @@ public class ClientProxy extends ServerProxy {
         RenderingRegistry.registerEntityRenderingHandler(enkoHIT_head.class, Render_enko_hit::new);
         RenderingRegistry.registerEntityRenderingHandler(rengoku.class, Render_rengoku2::new);
         RenderingRegistry.registerEntityRenderingHandler(siranui.class, Render_siranui::new);
+        RenderingRegistry.registerEntityRenderingHandler(kokuhuu_hit.class, Render_kokuhuu_hit::new);
+        RenderingRegistry.registerEntityRenderingHandler(HIT_sogi.class, Render_sogi::new);
+        RenderingRegistry.registerEntityRenderingHandler(sogi.class, Render_sogi2::new);
+        RenderingRegistry.registerEntityRenderingHandler(idaten.class, Render_idaten::new);
+        RenderingRegistry.registerEntityRenderingHandler(sinato.class, Render_sinato::new);
+        RenderingRegistry.registerEntityRenderingHandler(sinato_hit.class, Render_sinato_hit::new);
         /*RenderingRegistry.registerEntityRenderingHandler(Takitubo.class, Render_takitubo::new);
         RenderingRegistry.registerEntityRenderingHandler(Nagi.class, Render_nagi::new);
         RenderingRegistry.registerEntityRenderingHandler(Kanten.class, Render_kanten::new);
@@ -72,13 +85,11 @@ public class ClientProxy extends ServerProxy {
         RenderingRegistry.registerEntityRenderingHandler(kasumi_HIT.class, Render_kasumi_HIT::new);
         RenderingRegistry.registerEntityRenderingHandler(oboro.class,Render_oboro_slash::new);
         RenderingRegistry.registerEntityRenderingHandler(nejire.class, Render_nejire::new);
-        RenderingRegistry.registerEntityRenderingHandler(HIT_sogi.class, Render_sogi::new);
-        RenderingRegistry.registerEntityRenderingHandler(sogi.class, Render_sogi2::new);
+
         RenderingRegistry.registerEntityRenderingHandler(kokuhuu.class, Render_kokuhuu::new);
-        RenderingRegistry.registerEntityRenderingHandler(idaten.class, Render_idaten::new);
-        RenderingRegistry.registerEntityRenderingHandler(sinato.class, Render_sinato::new);
-        RenderingRegistry.registerEntityRenderingHandler(sinato_hit.class, Render_sinato_hit::new);
-        RenderingRegistry.registerEntityRenderingHandler(kokuhuu_hit.class, Render_kokuhuu_hit::new);
+
+
+
         RenderingRegistry.registerEntityRenderingHandler(HIT_hekireki.class, Render_HIT_hekireki::new);
         RenderingRegistry.registerEntityRenderingHandler(tawamure.class, Render_tawamure::new);
         RenderingRegistry.registerEntityRenderingHandler(moon.class, Rendermoon::new);
@@ -88,8 +99,8 @@ public class ClientProxy extends ServerProxy {
         RenderingRegistry.registerEntityRenderingHandler(kataware.class, Renderkataware::new);
         RenderingRegistry.registerEntityRenderingHandler(tukibae_hit.class, Rendertukibae_hit::new);
         RenderingRegistry.registerEntityRenderingHandler(tukibae.class, Rendertukibae::new);
-        RenderingRegistry.registerEntityRenderingHandler(rinbi.class, Renderrinbi::new);
-*/    }
+        RenderingRegistry.registerEntityRenderingHandler(rinbi.class, Renderrinbi::new);*/
+   }
     @Override
     public void registerClientStuff(){
         EntityInit.registerEntities();

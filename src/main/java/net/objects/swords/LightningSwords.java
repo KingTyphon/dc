@@ -100,7 +100,6 @@ public class LightningSwords extends ItemSword {
                 entity.playSound(SoundEvents.ENTITY_LIGHTNING_THUNDER, 0.7F, 1.6F + (player_.getRNG().nextFloat() - player_.getRNG().nextFloat()) * 0.4F);
 
                 if(speedup_on == false) {
-
                     if (entity.onGround) {
                         entity.motionX += 9.8D * look.x;
                         entity.motionZ += 9.8D * look.z;
@@ -108,8 +107,7 @@ public class LightningSwords extends ItemSword {
                         entity.motionX += 3.2D * look.x;
                         entity.motionY += 3.2D * look.y;
                         entity.motionZ += 3.2D * look.z;
-                    }
-                    speedup_on = true;
+                    }speedup_on = true;
                 }
             }
 

@@ -12,6 +12,8 @@ public interface ISlayerCapability {
     public int getBreath();
     public int getMaxMana();
 
+
+    public void useMana(int amount);
     public void setMaxXp(int maxXp);
     public void setXP(int xp);
     public void setLevel(int level);

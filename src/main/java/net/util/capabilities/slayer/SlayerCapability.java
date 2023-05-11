@@ -26,7 +26,7 @@ public class SlayerCapability implements ISlayerCapability {
   @Override
   public void levelUp() {
     if(this.xp == maxXp || this.xp >= maxXp) {
-      this.maxXp += 100 + (150*level);
+      this.maxXp = 100 + (150*level);
       this.xp = 0;
       this.level +=1;
     }
@@ -70,7 +70,10 @@ public class SlayerCapability implements ISlayerCapability {
   public void setMaxMana(int maxmana) {this.maxmana = maxmana;}
 
 
-
+  @Override
+  public void useMana(int amount){
+    this.mana = this.mana - amount;
+  }
   @Override
   public void copyFrom(ISlayerCapability player) {
 
