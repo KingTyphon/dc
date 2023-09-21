@@ -38,7 +38,7 @@ public class GuiSlayer extends GuiScreen {
         int centerX = (width / 2) - guiWidth / 2;
         int centerY = (height / 2) - guiHeight / 2;
         String health = Integer.toString(player.getCapability(TechProvider.TECH_CAP, null).getHealth());
-        String speed = Integer.toString(player.getCapability(TechProvider.TECH_CAP, null).getHealth());
+        String speed = Integer.toString(player.getCapability(TechProvider.TECH_CAP, null).getSpeed());
         String breath = Integer.toString(player.getCapability(TechProvider.TECH_CAP, null).getManaPoint());
         String technique = Integer.toString(player.getCapability(TechProvider.TECH_CAP, null).getTech());
         String Xp = Integer.toString(player.getCapability(SlayerProvider.Breath_CAP, null).getXP());
@@ -144,12 +144,12 @@ public class GuiSlayer extends GuiScreen {
         int centerX = (width / 2) - guiWidth / 2;
         int centerY = (height / 2) - guiHeight / 2;
         this.buttonList.clear();
-        this.buttonList.add(sword = new UpgradeButton(6, centerX,centerY +120, ""));
-        this.buttonList.add(sword = new UpgradeButton(5, centerX,centerY +100, ""));
-        this.buttonList.add(sword = new UpgradeButton(4, centerX,centerY +80, ""));
-        this.buttonList.add(sword = new UpgradeButton(3, centerX,centerY +60, ""));
-        this.buttonList.add(sword = new UpgradeButton(2, centerX,centerY +40, ""));
-        this.buttonList.add(sword = new UpgradeButton(1, centerX,centerY +20, ""));
+        this.buttonList.add(sword = new UpgradeButton(6, centerX,centerY+120, ""));
+        this.buttonList.add(sword = new UpgradeButton(5, centerX,centerY+100, ""));
+        this.buttonList.add(sword = new UpgradeButton(4, centerX,centerY+80, ""));
+        this.buttonList.add(sword = new UpgradeButton(3, centerX,centerY+60, ""));
+        this.buttonList.add(sword = new UpgradeButton(2, centerX,centerY+40, ""));
+        this.buttonList.add(sword = new UpgradeButton(1, centerX,centerY+20, ""));
         this.buttonList.add(button1 = new GuiButton(0, centerX+guiWidth-82, centerY+guiHeight-20, 75, 20, "Skill Tree"));
         super.initGui();
     }
@@ -158,6 +158,7 @@ public class GuiSlayer extends GuiScreen {
     @Override
     protected void actionPerformed(GuiButton button) throws IOException {
         //checks for the buttons
+        if(player.getCapability(TechProvider.TECH_CAP,null).getSp() >0){
         switch (button.id){
             case 0:
                 Minecraft.getMinecraft().displayGuiScreen(new SkillTreeGui());
@@ -194,6 +195,7 @@ public class GuiSlayer extends GuiScreen {
                 break;
             default:
                 break;
+        }
         }
 
         super.actionPerformed(button);
