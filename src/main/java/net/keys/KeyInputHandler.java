@@ -132,8 +132,8 @@ public class KeyInputHandler {
                 player1.getCapability(TechProvider.TECH_CAP, null).setTech(playerTech + 4);
                 player1.sendMessage(new TextComponentString(breath + " Form: " + player1.getCapability(TechProvider.TECH_CAP, null).getTech()));
             }
-            else if(playerTech >5 && playerTech < 9)player1.getCapability(TechProvider.TECH_CAP, null).setTech(9);
-            else if(playerTech >9)player1.getCapability(TechProvider.TECH_CAP, null).setTech(1);
+            else if(playerTech >5 && playerTech < 9 && playerBreath == 1)player1.getCapability(TechProvider.TECH_CAP, null).setTech(9);
+            else if(playerTech >9 && playerBreath == 1)player1.getCapability(TechProvider.TECH_CAP, null).setTech(1);
 
             //Insect Breathing - Done 1,2,3,4,
             if (playerTech < 4 && playerBreath == 2) {
@@ -171,7 +171,7 @@ public class KeyInputHandler {
                 breath = breathChoice(playerBreath);
                 player1.getCapability(TechProvider.TECH_CAP, null).setTech(1);
                 player1.sendMessage(new TextComponentString(breath + " Form: " + player1.getCapability(TechProvider.TECH_CAP, null).getTech()));
-            }else if(playerTech >5)player1.getCapability(TechProvider.TECH_CAP, null).setTech(1);
+            }else if(playerTech >5 && playerBreath == 4)player1.getCapability(TechProvider.TECH_CAP, null).setTech(1);
 
             //Mist Breathing - Done 1,2,3,4,5,6,7
             if (playerTech < 7 && playerBreath == 5) {
@@ -182,7 +182,7 @@ public class KeyInputHandler {
                 breath = breathChoice(playerBreath);
                 player1.getCapability(TechProvider.TECH_CAP, null).setTech(1);
                 player1.sendMessage(new TextComponentString(breath + " Form: " + player1.getCapability(TechProvider.TECH_CAP, null).getTech()));
-            }else if(playerTech >7)player1.getCapability(TechProvider.TECH_CAP, null).setTech(1);
+            }else if(playerTech >7 && playerBreath == 5)player1.getCapability(TechProvider.TECH_CAP, null).setTech(1);
 
             //Sound Breathing - Done 1,4,5
             if(playerTech == 1 && playerBreath == 6){
@@ -198,7 +198,7 @@ public class KeyInputHandler {
                 breath = breathChoice(playerBreath);
                 player1.getCapability(TechProvider.TECH_CAP, null).setTech(1);
                 player1.sendMessage(new TextComponentString(breath + " Form: " + player1.getCapability(TechProvider.TECH_CAP, null).getTech()));
-            }else if(playerTech >11)player1.getCapability(TechProvider.TECH_CAP, null).setTech(1);
+            }else if(playerTech >11 && playerBreath == 6)player1.getCapability(TechProvider.TECH_CAP, null).setTech(1);
 
             //Beast Breathing - Done 1,2,3,4,5,6,7,8,9,10
             if (playerTech < 10  && playerBreath == 7) {
@@ -209,7 +209,7 @@ public class KeyInputHandler {
                 breath = breathChoice(playerBreath);
                 player1.getCapability(TechProvider.TECH_CAP, null).setTech(1);
                 player1.sendMessage(new TextComponentString(breath + " Form: " + player1.getCapability(TechProvider.TECH_CAP, null).getTech()));
-            }else if(playerTech >11)player1.getCapability(TechProvider.TECH_CAP, null).setTech(1);
+            }else if(playerTech >11 && playerBreath == 7)player1.getCapability(TechProvider.TECH_CAP, null).setTech(1);
 
             //Wind Breathing - Done 1,2,3,4,5,6,7,8,9
             if (playerTech < 9  && playerBreath == 8) {
@@ -220,7 +220,7 @@ public class KeyInputHandler {
                 breath = breathChoice(playerBreath);
                 player1.getCapability(TechProvider.TECH_CAP, null).setTech(1);
                 player1.sendMessage(new TextComponentString(breath + " Form: " + player1.getCapability(TechProvider.TECH_CAP, null).getTech()));
-            }else if(playerTech >10)player1.getCapability(TechProvider.TECH_CAP, null).setTech(1);
+            }else if(playerTech >10 && playerBreath == 8)player1.getCapability(TechProvider.TECH_CAP, null).setTech(1);
 
             //Ice Breathing - Done 1,2,3,4,5,6,7,8,9,10,11
             if (playerTech < 11  && playerBreath == 9) {
@@ -231,7 +231,7 @@ public class KeyInputHandler {
                 breath = breathChoice(playerBreath);
                 player1.getCapability(TechProvider.TECH_CAP, null).setTech(1);
                 player1.sendMessage(new TextComponentString(breath + " Form: " + player1.getCapability(TechProvider.TECH_CAP, null).getTech()));
-            }else if(playerTech >11)player1.getCapability(TechProvider.TECH_CAP, null).setTech(1);
+            }else if(playerTech >11 && playerBreath == 9)player1.getCapability(TechProvider.TECH_CAP, null).setTech(1);
 
             //Special Breathing - Done 1,2,3,4,5,6,7,8,9,10,11
             if (playerTech < 11  && playerBreath == 10) {
@@ -242,7 +242,7 @@ public class KeyInputHandler {
                 breath = breathChoice(playerBreath);
                 player1.getCapability(TechProvider.TECH_CAP, null).setTech(1);
                 player1.sendMessage(new TextComponentString(breath + " Form: " + player1.getCapability(TechProvider.TECH_CAP, null).getTech()));
-            }else if(playerTech >11)player1.getCapability(TechProvider.TECH_CAP, null).setTech(1);
+            }else if(playerTech >11 && playerBreath == 10)player1.getCapability(TechProvider.TECH_CAP, null).setTech(1);
 
             //Water Breathing - Done 1,2,3,4,5,6,7,8,9,10,11
             if (playerTech < 11  && playerBreath == 11) {
@@ -253,7 +253,7 @@ public class KeyInputHandler {
                 breath = breathChoice(playerBreath);
                 player1.getCapability(TechProvider.TECH_CAP, null).setTech(1);
                 player1.sendMessage(new TextComponentString(breath + " Form: " + player1.getCapability(TechProvider.TECH_CAP, null).getTech()));
-            }else if(playerTech >11)player1.getCapability(TechProvider.TECH_CAP, null).setTech(1);
+            }else if(playerTech >11 && playerBreath == 11)player1.getCapability(TechProvider.TECH_CAP, null).setTech(1);
 
             //Love Breathing - Done 1,2,3,4,5,6,7,8,9,10,11
             if (playerTech < 11  && playerBreath == 12) {
@@ -264,11 +264,11 @@ public class KeyInputHandler {
                 breath = breathChoice(playerBreath);
                 player1.getCapability(TechProvider.TECH_CAP, null).setTech(1);
                 player1.sendMessage(new TextComponentString(breath + " Form: " + player1.getCapability(TechProvider.TECH_CAP, null).getTech()));
-            }else if(playerTech >11)player1.getCapability(TechProvider.TECH_CAP, null).setTech(1);
+            }else if(playerTech >11 && playerBreath == 12)player1.getCapability(TechProvider.TECH_CAP, null).setTech(1);
 
             Networking.sendToServer(new Slayer(player1.getCapability(SlayerProvider.Breath_CAP, null).getBreath(), player1.getCapability(SlayerProvider.Breath_CAP, null).getMana(), player1.getCapability(SlayerProvider.Breath_CAP, null).getXP(), player1.getCapability(SlayerProvider.Breath_CAP, null).getLevel(), player1.getCapability(SlayerProvider.Breath_CAP, null).getMaxMana()));
             Networking.sendToServer(new Tech(player1));
-        }
+
 
         //Flower Breathing - Done 2,4,5,6,7
         if (playerTech == 2 && playerBreath == 13) {
@@ -283,7 +283,7 @@ public class KeyInputHandler {
             breath = breathChoice(playerBreath);
             player1.getCapability(TechProvider.TECH_CAP, null).setTech(2);
             player1.sendMessage(new TextComponentString(breath + " Form: " + player1.getCapability(TechProvider.TECH_CAP, null).getTech()));
-        }else if(playerTech >11 || playerTech == 1)player1.getCapability(TechProvider.TECH_CAP, null).setTech(2);
+        }else if(playerTech >11 || playerTech == 1 && playerBreath == 13)player1.getCapability(TechProvider.TECH_CAP, null).setTech(2);
 
         //Sun Breathing - Done 1,2,3,4,5,6,7,8,9,10,11,12,13
         if (playerTech < 13  && playerBreath == 14) {
@@ -294,7 +294,7 @@ public class KeyInputHandler {
             breath = breathChoice(playerBreath);
             player1.getCapability(TechProvider.TECH_CAP, null).setTech(1);
             player1.sendMessage(new TextComponentString(breath + " Form: " + player1.getCapability(TechProvider.TECH_CAP, null).getTech()));
-        }else if(playerTech >13)player1.getCapability(TechProvider.TECH_CAP, null).setTech(1);
+        }else if(playerTech >13 && playerBreath == 14)player1.getCapability(TechProvider.TECH_CAP, null).setTech(1);
 
         //Serpent Breathing - Done 1,2,3,4,5
         if (playerTech < 5  && playerBreath == 15) {
@@ -305,7 +305,7 @@ public class KeyInputHandler {
             breath = breathChoice(playerBreath);
             player1.getCapability(TechProvider.TECH_CAP, null).setTech(1);
             player1.sendMessage(new TextComponentString(breath + " Form: " + player1.getCapability(TechProvider.TECH_CAP, null).getTech()));
-        }else if(playerTech >5)player1.getCapability(TechProvider.TECH_CAP, null).setTech(1);
+        }else if(playerTech >5 && playerBreath == 15)player1.getCapability(TechProvider.TECH_CAP, null).setTech(1);
 
         //Stone Breathing - Done 1,2,3,4,5
         if (playerTech < 5  && playerBreath == 16) {
@@ -316,10 +316,11 @@ public class KeyInputHandler {
             breath = breathChoice(playerBreath);
             player1.getCapability(TechProvider.TECH_CAP, null).setTech(1);
             player1.sendMessage(new TextComponentString(breath + " Form: " + player1.getCapability(TechProvider.TECH_CAP, null).getTech()));
-        }else if(playerTech >5)player1.getCapability(TechProvider.TECH_CAP, null).setTech(1);
+        }else if(playerTech >5 && playerBreath == 16)player1.getCapability(TechProvider.TECH_CAP, null).setTech(1);
         /*     if(ClientProxy.breath.isKeyDown() && player1.getCapability(SlayerProvider.Breath_CAP, null).getMana() != player1.getCapability(SlayerProvider.Breath_CAP, null).getMaxMana()){
 
         }*/
+        }
     }
 }
 

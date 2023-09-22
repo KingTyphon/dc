@@ -22,9 +22,7 @@ public class UpgradeButton extends GuiButton {
     public void drawButton(Minecraft mc, int mouseX, int mouseY, float partialTicks) {
         if(this.visible == true) {
             mc.getTextureManager().bindTexture(texture1);
-            this.drawTexturedModalRect(x - 22, y + 10, u, v, buttonWidth, ButtonHeight);
-            this.drawTexturedModalRect(x - 22, y + 32, u, v, buttonWidth, ButtonHeight);
-            this.drawTexturedModalRect(x - 22, y + 54, u, v, buttonWidth, ButtonHeight);
+            this.drawTexturedModalRect(x, y, u, v, buttonWidth, ButtonHeight);
 
 
         }
