@@ -137,6 +137,7 @@ public class GuiSlayer extends GuiScreen {
         int centerX = (width / 2) - guiWidth / 2;
         int centerY = (height / 2) - guiHeight / 2;
 
+        //Upgrade Buttons for the Gui stat management
         for (int i = 0; i < UPGRADE_BUTTON_IDS.length; i++) {
             this.addButton(new UpgradeButton(UPGRADE_BUTTON_IDS[i], centerX - 20, centerY + i * 25));
         }
