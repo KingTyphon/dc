@@ -20,16 +20,20 @@ import net.entity.projectiles.Wind.sogi.sogi;
 import net.entity.render.Flame.FifthForm.Render_enko_hit;
 import net.entity.render.Flame.FifthForm.Render_head_enko;
 import net.entity.render.Flame.*;
+import net.entity.render.RenderEarrings;
 import net.entity.render.shadow.RenderShadowball;
 import net.entity.render.shadow.RenderShadowslash;
 import net.entity.render.thunder.Render_Lbolt;
 import net.entity.render.wind.*;
 import net.gui.GuiBreathBar;
 import net.gui.GuiHandler;
+import net.gui.MoveSetGui;
 import net.init.EntityInit;
 import net.keys.KeyInputHandler;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
@@ -69,6 +73,8 @@ public class ClientProxy extends ServerProxy {
         RenderingRegistry.registerEntityRenderingHandler(idaten.class, Render_idaten::new);
         RenderingRegistry.registerEntityRenderingHandler(sinato.class, Render_sinato::new);
         RenderingRegistry.registerEntityRenderingHandler(sinato_hit.class, Render_sinato_hit::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityLivingBase.class, new RenderEarrings(Minecraft.getMinecraft().getRenderManager()));
+
         /*RenderingRegistry.registerEntityRenderingHandler(Takitubo.class, Render_takitubo::new);
         RenderingRegistry.registerEntityRenderingHandler(Nagi.class, Render_nagi::new);
         RenderingRegistry.registerEntityRenderingHandler(Kanten.class, Render_kanten::new);
@@ -114,6 +120,7 @@ public class ClientProxy extends ServerProxy {
         NetworkRegistry.INSTANCE.registerGuiHandler(DemonCraft.instance, new GuiHandler());
         MinecraftForge.EVENT_BUS.register(new KeyInputHandler());
         MinecraftForge.EVENT_BUS.register(new GuiBreathBar());
+        MinecraftForge.EVENT_BUS.register(new MoveSetGui());
         DemonCraft.proxy.render();
         EventHandler.registerEvents();
         RegistryHandler.initRegistries();

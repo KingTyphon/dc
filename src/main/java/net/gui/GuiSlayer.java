@@ -20,6 +20,8 @@ import java.util.List;
 public class GuiSlayer extends GuiScreen {
 
     public static final int ID = 0;
+    private static final int[] UPGRADE_BUTTON_IDS = {1, 2, 3, 4, 5, 6};
+
 
     final ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/gui/maingui.png");
 
@@ -73,48 +75,48 @@ public class GuiSlayer extends GuiScreen {
 
         switch(breathNum){
             case 1:
-                fontRenderer.drawString("Flame Breathing", centerX +110, centerY +50, 13828096);
+                fontRenderer.drawString("Flame Breathing", centerX +110, centerY +50, 0);
                 break;
             case 2:
-                fontRenderer.drawString("Insect Breathing", centerX +110, centerY +50, 0x0191255);
+                fontRenderer.drawString("Insect Breathing", centerX +110, centerY +50, 0);
                 break;
             case 3:
-                fontRenderer.drawString("Thunder Breathing", centerX +110, centerY +50, 0x0191255);
+                fontRenderer.drawString("Thunder Breathing", centerX +110, centerY +50, 0);
                 break;
             case 4:
-                fontRenderer.drawString("Shadow Breathing", centerX +110, centerY +50, 3021648);
+                fontRenderer.drawString("Shadow Breathing", centerX +110, centerY +50, 0);
                 break;
             case 5:
-                fontRenderer.drawString("Mist Breathing", centerX +110, centerY +50, 10527399);
+                fontRenderer.drawString("Mist Breathing", centerX +110, centerY +50, 0);
                 break;
             case 6:
-                fontRenderer.drawString("Sound Breathing", centerX +110, centerY +50, 0x0191255);
+                fontRenderer.drawString("Sound Breathing", centerX +110, centerY +50, 0);
                 break;
             case 7:
-                fontRenderer.drawString("Beast Breathing", centerX +110, centerY +50, 0x0191255);
+                fontRenderer.drawString("Beast Breathing", centerX +110, centerY +50, 0);
                 break;
             case 8:
-                fontRenderer.drawString("Wind Breathing", centerX +110, centerY +50, 0x0191255);
+                fontRenderer.drawString("Wind Breathing", centerX +110, centerY +50, 0);
                 break;
             case 9:
-                fontRenderer.drawString("Ice Breathing", centerX +110, centerY +50, 0x0191255);
+                fontRenderer.drawString("Ice Breathing", centerX +110, centerY +50, 0);
                 break;
             case 10:
-                fontRenderer.drawString("Special Breathing", centerX +110, centerY +50, 0x0191255);
+                fontRenderer.drawString("Special Breathing", centerX +110, centerY +50, 0);
                 break;
             case 11:
                 fontRenderer.drawString("Water Breathing", centerX +110, centerY +50, 44031);
                 break;
             case 12:
-                fontRenderer.drawString("Love Breathing", centerX +110, centerY +50, 0x0191255);
+                fontRenderer.drawString("Love Breathing", centerX +110, centerY +50, 0);
                 break;
             case 13:
-                fontRenderer.drawString("Flower Breathing", centerX +110, centerY +50, 0x0191255);
+                fontRenderer.drawString("Flower Breathing", centerX +110, centerY +50, 0);
                 break;
             case 14:fontRenderer.drawString("Sun Breathing", centerX +110, centerY +50, 16735521);
                 break;
             case 15:
-                fontRenderer.drawString("Serpent Breathing", centerX +110, centerY +50, 0x0191255);
+                fontRenderer.drawString("Serpent Breathing", centerX +110, centerY +50, 0);
                 break;
             case 16:
                 fontRenderer.drawString("Stone Breathing", centerX +110, centerY +50, 11448243);
@@ -128,23 +130,19 @@ public class GuiSlayer extends GuiScreen {
             drawHoveringText(text,mouseX, mouseY);
         }
     }
-    @Override
-    protected void renderToolTip(ItemStack stack, int x, int y){
-
-    }
 
     @Override
     public void initGui() {
+        this.buttonList.clear();
         int centerX = (width / 2) - guiWidth / 2;
         int centerY = (height / 2) - guiHeight / 2;
-        this.buttonList.clear();
-        this.addButton(new UpgradeButton(6, centerX-20,centerY+125, ""));
-        this.addButton(new UpgradeButton(5, centerX-20,centerY+100, ""));
-        this.addButton(new UpgradeButton(4, centerX-20,centerY+75, ""));
-        this.addButton(new UpgradeButton(3, centerX-20,centerY+50, ""));
-        this.addButton(new UpgradeButton(2, centerX-20,centerY+25, ""));
-        this.addButton(new UpgradeButton(1, centerX-20,centerY, ""));
-        this.addButton(new GuiButton(0, centerX+guiWidth-82, centerY+guiHeight-20, 75, 20, "Skill Tree"));
+
+        for (int i = 0; i < UPGRADE_BUTTON_IDS.length; i++) {
+            this.addButton(new UpgradeButton(UPGRADE_BUTTON_IDS[i], centerX - 20, centerY + i * 25));
+        }
+
+        this.addButton(new GuiButton(ID, centerX + guiWidth - 82, centerY + guiHeight - 20, 75, 20, "Skill Tree"));
+
         super.initGui();
     }
 

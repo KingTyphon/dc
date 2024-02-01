@@ -65,6 +65,7 @@ public class DemonCraft
         proxy.registerClientStuff();
         Networking.init();
 
+
     }
     @EventHandler
     public static void postInit(FMLPostInitializationEvent event) {

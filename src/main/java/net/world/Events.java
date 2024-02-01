@@ -27,18 +27,17 @@ import net.util.capabilities.techniquecapability.TechProvider;
 
 public class Events {
 
-    Minecraft mc = Minecraft.getMinecraft();
+    private final Minecraft mc = Minecraft.getMinecraft();
 
 
     @SubscribeEvent
     public void onPlayerClone(PlayerEvent.Clone event){
 
         //Capabilities
-        EntityPlayerMP player = (EntityPlayerMP) event.getEntityPlayer();;
-
-        //Gets the Old Player
+        EntityPlayerMP player = (EntityPlayerMP) event.getEntityPlayer();
         ISlayerCapability playerOld = event.getOriginal().getCapability(SlayerProvider.Breath_CAP, null);
         ISlayerCapability playerNew = player.getCapability(SlayerProvider.Breath_CAP, null);
+
         if (event.isWasDeath() && player != null && !player.world.isRemote) {
             player.getCapability(TechProvider.TECH_CAP, null).setTech(event.getOriginal().getCapability(TechProvider.TECH_CAP, null).getTech());
             Networking.sendTo(new Tech(event.getOriginal()), (EntityPlayerMP) player);
@@ -46,15 +45,6 @@ public class Events {
             PlayerDataManager.updateClientSlayer(player, playerOld);
             Networking.sendTo(new Slayer(playerNew.getBreath(), playerNew.getMana(), playerNew.getXP(), playerNew.getLevel(), playerNew.getMaxMana()), player);
 
-            //Sends the stats over if they have a breathing technique
-            if (player.getCapability(SlayerProvider.Breath_CAP, null).getBreath() > 0) {
-                player.capabilities.setPlayerWalkSpeed(0.13f);
-                if (!player.isInWater() && !player.isCreative()) player.addVelocity(0F, 0.01F, 0F);
-                player.fallDistance = 0.5F;
-                player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(32 + (1 * player.getCapability(TechProvider.TECH_CAP, null).getHealth()));
-                //player.getEntityAttribute(SharedMonsterAttributes.ATTACK_SPEED).setBaseValue(-1.4000000953674316D);
-                player.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3 + (int)(.25 * player.getCapability(TechProvider.TECH_CAP, null).getStrength()));
-            }
         }
 
         if (!event.isWasDeath() && player != null) {
@@ -104,22 +94,33 @@ public class Events {
 
     @SubscribeEvent
     public void onPlayerTick(TickEvent.PlayerTickEvent event){
+        regenerateMana(event.player);
         EntityPlayer player = event.player;
         World world = player.getEntityWorld();
-            //if they have a breathing technique
-            if (player.getCapability(SlayerProvider.Breath_CAP, null).getBreath() >0) {
+        //if they have a breathing technique
+        if (player.getCapability(SlayerProvider.Breath_CAP, null).getBreath() >0) {
+            if (!player.isInWater() && !player.isCreative()) {
+                player.addVelocity(0F, 0.01F, 0F);
+            }
+            int healthPlayer = player.getCapability(TechProvider.TECH_CAP, null).getHealth();
+            int speedPlayer = player.getCapability(TechProvider.TECH_CAP, null).getSpeed();
 
-                if (!player.isInWater() && !player.isCreative()) player.addVelocity(0F, 0.01F, 0F);
-                player.fallDistance = 0.5F;
-                player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(32 + (1 * player.getCapability(TechProvider.TECH_CAP, null).getHealth()));
-                //player.getEntityAttribute(SharedMonsterAttributes.ATTACK_SPEED).setBaseValue(-1.4);
-                player.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3 + (int)(.25 * player.getCapability(TechProvider.TECH_CAP, null).getStrength()));
-                player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.12D + (.01d * player.getCapability(TechProvider.TECH_CAP,null).getSpeed()));
+            player.fallDistance = 0.0F;  // Set fall damage to 0 blocks
 
-            } if(player.getCapability(SlayerProvider.Breath_CAP, null).getMana() < player.getCapability(SlayerProvider.Breath_CAP, null).getMaxMana()){
-                player.getCapability(SlayerProvider.Breath_CAP, null).setMana(player.getCapability(SlayerProvider.Breath_CAP, null).getMana() + .025F);
+            // Set the base health to 40 (two rows of hearts)
+            player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(40.0+(3*healthPlayer));
+
+            // Set attack damage to 6 (you can adjust this based on your requirements)
+            player.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(6.0);
+
+            // Set movement speed to 0.20D with the players speed attribute
+            player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.20D + (.03 * speedPlayer));
+            player.getEntityAttribute(SharedMonsterAttributes.ATTACK_SPEED).setBaseValue(4.0D + (.25 * speedPlayer));
+
         }
-            if(!world.isRemote && player.hasCapability(SlayerProvider.Breath_CAP, null)){
+
+        regenerateMana(player);
+        if(!world.isRemote && player.hasCapability(SlayerProvider.Breath_CAP, null)){
 
             if (player.getCapability(SlayerProvider.Breath_CAP, null).getXP() >= player.getCapability(SlayerProvider.Breath_CAP, null).getMaxXp()) {
                 player.getCapability(SlayerProvider.Breath_CAP, null).levelUp();
@@ -130,31 +131,39 @@ public class Events {
         }
     }
 
-
+    private void regenerateMana(EntityPlayer player) {
+        ISlayerCapability slayerCapability = player.getCapability(SlayerProvider.Breath_CAP, null);
+        if (slayerCapability.getMana() < slayerCapability.getMaxMana()) {
+            slayerCapability.setMana(slayerCapability.getMana() + 0.025F);
+        }
+    }
     @SubscribeEvent
     public void onPlayerKill(LivingDeathEvent event)
     {
         if(!event.getEntity().world.isRemote){
             Entity killer = event.getSource().getTrueSource();
             if(killer != null && killer instanceof EntityLivingBase && event.getSource().getTrueSource() instanceof EntityPlayer) {
-            EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
-            EntityLivingBase killedEntity = (EntityLivingBase) event.getEntity();
-            if(killedEntity != player){
-                if(killedEntity instanceof EntityPlayer)
-                {
-                PlayerManager.increaseXPUpdate(player, 6);
-                }
-                else if(killedEntity instanceof EntityMob)
-                {
-                PlayerManager.increaseXPUpdate(player, 4);
-                }
-                else if (killedEntity instanceof EntityDemon)
-                {
-                    PlayerManager.increaseXPUpdate(player, 8);
+                EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
+                EntityLivingBase killedEntity = (EntityLivingBase) event.getEntity();
+                if(killedEntity != player){
+                    if(killedEntity instanceof EntityPlayer)
+                    {
+                        PlayerManager.increaseXPUpdate(player, 6);
+                    }
+                    else if(killedEntity instanceof EntityMob)
+                    {
+                        PlayerManager.increaseXPUpdate(player, 4);
+                    }
+                    else if (killedEntity instanceof EntityDemon)
+                    {
+                        PlayerManager.increaseXPUpdate(player, 8);
+                    }
+                    else{
+                        PlayerManager.increaseXPUpdate(player, 2);
+                    }
                 }
             }
         }
-      }
     }
 }
 

@@ -28,7 +28,7 @@ public class Render_rengoku2 extends Render<rengoku> {
         GlStateManager.enableRescaleNormal();
         GlStateManager.rotate(180.0F - this.renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
         GlStateManager.rotate(-this.renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
-        bindEntityTexture(entity);
+        super.bindEntityTexture(entity);
         this.model.render((Entity)entity, partialTicks, 0.0F, -1.0F, 0.0F, 0.0F, 0.05F);
         GlStateManager.popMatrix();
     }

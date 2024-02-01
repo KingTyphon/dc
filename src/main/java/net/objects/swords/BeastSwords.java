@@ -7,15 +7,20 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.text.Style;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.networking.Networking;
+import net.networking.messages.slayer.Slayer;
 import net.util.capabilities.slayer.SlayerProvider;
 import net.util.capabilities.techniquecapability.TechProvider;
 
@@ -49,10 +54,10 @@ public class BeastSwords extends ItemSword {
         world_=world;
 		this.tmpX = player.motionX;
 		this.tmpZ = player.motionZ;
-
+        float mana = player.getCapability(SlayerProvider.Breath_CAP, null).getMana();
 
 		if(player.getCapability(SlayerProvider.Breath_CAP, null).getBreath() == 7){
-		if (player.getCapability(TechProvider.TECH_CAP, null).getTech() == 2) {
+		if (player.getCapability(TechProvider.TECH_CAP, null).getTech() == 2 && mana >= 25) {
 
             if(tick==0) {
                 tick=20; tick2=1;
@@ -68,12 +73,19 @@ public class BeastSwords extends ItemSword {
                 player.motionZ += 1.1D * look.z;
             }
             }
+            player.getCapability(SlayerProvider.Breath_CAP, null).setMana(mana - 25.0F);
 		}
 		if (player.getCapability(TechProvider.TECH_CAP, null).getTech() == 7) {
 
-        }}
+        }
+		if (player.getCapability(TechProvider.TECH_CAP, null).getTech() == 2 && mana < 25.0F) {
+            player.sendMessage(new TextComponentString("You Have Run Out of Breath"));
+		}
+		}
 		else{
-
+		    player.sendMessage(new TextComponentString("You Have To Learn ")
+                .appendSibling(new TextComponentString("Beast Breathing").setStyle(new Style().setColor(TextFormatting.DARK_BLUE)))
+                .appendSibling(new TextComponentString(" To Use This Sword.")));
         }
 
 

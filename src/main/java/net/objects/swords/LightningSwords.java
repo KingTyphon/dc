@@ -72,6 +72,9 @@ public class LightningSwords extends ItemSword {
                 hekireki_flag = true;
                 speedup_on = false;
                 playerIn.getCapability(SlayerProvider.Breath_CAP, null).setMana(mana - 25.0F);
+        }
+        if(playerIn.getCapability(TechProvider.TECH_CAP, null).getTech() == 1 && mana < 25.0F){
+            playerIn.sendMessage(new TextComponentString("You Have Run Out of Breath"));
         }if (playerIn.getCapability(SlayerProvider.Breath_CAP, null).getBreath() > 3 || playerIn.getCapability(SlayerProvider.Breath_CAP, null).getBreath() < 3) {
             playerIn.sendMessage(new TextComponentString("You Have To Learn ")
                     .appendSibling(new TextComponentString("Lightning Breathing").setStyle(new Style().setColor(TextFormatting.YELLOW)))
