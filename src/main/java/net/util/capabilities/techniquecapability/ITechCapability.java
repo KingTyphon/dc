@@ -13,6 +13,9 @@ public interface ITechCapability {
     public int getSkill();
     public void setSkill(int skill);
 
+    public int getTechnique();
+    public void setTechnique(int technique);
+
     public int getSpeed();
     public void setSpeed(int speed);
 

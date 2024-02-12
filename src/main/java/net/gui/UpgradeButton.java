@@ -3,6 +3,7 @@ package net.gui;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
 import net.util.handlers.Reference;
 
@@ -23,6 +24,7 @@ public class UpgradeButton extends GuiButton {
         if(this.visible) {
             mc.getTextureManager().bindTexture(texture);
             this.drawTexturedModalRect(x, y, u, v, buttonWidth, buttonHeight);
+            GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 
         }
 

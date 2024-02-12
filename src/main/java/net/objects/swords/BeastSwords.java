@@ -6,11 +6,12 @@ import net.init.ItemInit;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.Vec3d;
@@ -18,13 +19,14 @@ import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.networking.Networking;
-import net.networking.messages.slayer.Slayer;
 import net.util.capabilities.slayer.SlayerProvider;
+import net.util.capabilities.techniquecapability.ITechCapability;
 import net.util.capabilities.techniquecapability.TechProvider;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.List;
 
 import static net.minecraftforge.fml.relauncher.Side.CLIENT;
@@ -39,6 +41,9 @@ public class BeastSwords extends ItemSword {
     double prePosX,prePosY,prePosZ;
     double HprePosX,HprePosY,HprePosZ;
     int ugatinuki_flag=0;
+    private long lastGlowUpdateTime = 0;
+    private List<Entity> glowingEntities = new ArrayList<>();
+
 
     public BeastSwords(String name, ToolMaterial material){
         super(material);
@@ -55,9 +60,10 @@ public class BeastSwords extends ItemSword {
 		this.tmpX = player.motionX;
 		this.tmpZ = player.motionZ;
         float mana = player.getCapability(SlayerProvider.Breath_CAP, null).getMana();
+        int tech =player.getCapability(TechProvider.TECH_CAP, null).getTech();
 
 		if(player.getCapability(SlayerProvider.Breath_CAP, null).getBreath() == 7){
-		if (player.getCapability(TechProvider.TECH_CAP, null).getTech() == 2 && mana >= 25) {
+		if (tech == 2 && mana >= 25) {
 
             if(tick==0) {
                 tick=20; tick2=1;
@@ -75,10 +81,15 @@ public class BeastSwords extends ItemSword {
             }
             player.getCapability(SlayerProvider.Breath_CAP, null).setMana(mana - 25.0F);
 		}
-		if (player.getCapability(TechProvider.TECH_CAP, null).getTech() == 7) {
+		if (tech == 7 && mana >= 40.0F) {
+            activateSpatialAwareness(player);
+            player.getCapability(SlayerProvider.Breath_CAP, null).setMana(mana - 40.0F);
 
         }
-		if (player.getCapability(TechProvider.TECH_CAP, null).getTech() == 2 && mana < 25.0F) {
+		if(tech == 8 && mana > 15.0F){
+            activateExplosiveRush(player);
+        }
+		if (tech == 2 && mana < 25.0F || tech == 7 && mana < 40.0F) {
             player.sendMessage(new TextComponentString("You Have Run Out of Breath"));
 		}
 		}
@@ -92,6 +103,24 @@ public class BeastSwords extends ItemSword {
 		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, item);
 
 }
+    private void activateSpatialAwareness(EntityPlayer player) {
+        // Get nearby entities within a certain radius
+        List<EntityLivingBase> nearbyEntities = player.world.getEntitiesWithinAABB(EntityLivingBase.class,
+                player.getEntityBoundingBox().grow(10.0D, 5.0D, 10.0D));
+
+        // Highlight or perform actions on the entities
+        for (EntityLivingBase entity : nearbyEntities) {
+            if (!glowingEntities.contains(entity)) {
+                glowingEntities.add(entity);
+                entity.setGlowing(true);
+            }
+        }
+        lastGlowUpdateTime = System.currentTimeMillis();
+        // Apply cooldown to avoid spamming
+        // Example: Set a cooldown timer for 10 seconds
+        player.getCooldownTracker().setCooldown(this, 200);
+    }
+
     @SideOnly(CLIENT)
     @Override
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn){
@@ -104,9 +133,18 @@ public class BeastSwords extends ItemSword {
         }
     }
 
-
+    private void deactivateGlowOnEntitiesIfNeeded() {
+        if (System.currentTimeMillis() - lastGlowUpdateTime > 10000) {
+            for (Entity entity : glowingEntities) {
+                if (entity != null) {
+                    entity.setGlowing(false);
+                }
+            }
+            glowingEntities.clear(); // Clear the list after deactivating glow on all entities
+        }
+    }
     public void onUpdate(ItemStack itemstack, World world, Entity entity, int i, boolean B) {
-
+        deactivateGlowOnEntitiesIfNeeded();
         if(tick<=0) {
             tick=0;
             x=0;
@@ -132,6 +170,56 @@ public class BeastSwords extends ItemSword {
                 if(tick>=0)ugatinuki_action(world,player_,hand_,6-tick,1f);
                 if(tick<=3)ugatinuki_action(world,player_,hand_,6-tick,-1f);
                 if(tick==1)harm_off(world_,player_,hand_);
+            }
+        }
+    }
+    private void activateExplosiveRush(EntityPlayer player) {
+        // Get the player's look vector (direction they are facing)
+        Vec3d lookVec = player.getLookVec();
+        ITechCapability tech = player.getCapability(TechProvider.TECH_CAP, null);
+
+        // Set the player's velocity to rush forward
+        double rushSpeed = 2.0 + (.25 * tech.getSpeed()); // Adjust the speed as needed
+        player.motionX = lookVec.x * rushSpeed;
+        player.motionY = 0.0; // Set to 0 to prevent jumping during the rush
+        player.motionZ = lookVec.z * rushSpeed;
+
+        // Apply cooldown to avoid spamming
+        // Example: Set a cooldown timer for 2.5 seconds
+        player.getCooldownTracker().setCooldown(this, 50);
+
+        // Detect and damage entities in the player's path
+        detectAndDamageEntities(player);
+    }
+
+    private void detectAndDamageEntities(EntityPlayer player) {
+        // Get the player's position and look vector
+        double startX = player.posX;
+        double startY = player.posY + player.getEyeHeight();
+        double startZ = player.posZ;
+        Vec3d lookVec = player.getLookVec();
+
+        // Set the detection range and adjust as needed
+        double detectionRange = 5.0;
+
+        // Iterate over entities in the player's path
+        List<Entity> entitiesInPath = player.world.getEntitiesInAABBexcluding(
+                player,
+                player.getEntityBoundingBox().expand(lookVec.x * detectionRange, lookVec.y * detectionRange, lookVec.z * detectionRange),
+                entity -> entity instanceof EntityLivingBase
+        );
+
+        for (Entity entity : entitiesInPath) {
+            // Apply damage to the entity (adjust damage amount as needed)
+            if (entity instanceof EntityLivingBase) {
+                ((EntityLivingBase) entity).attackEntityFrom(DamageSource.causePlayerDamage(player), 5.0f);
+
+                // Calculate the new position for each entity in the path
+                double newX = startX + lookVec.x * detectionRange;
+                double newY = startY;
+                double newZ = startZ + lookVec.z * detectionRange;
+                // Set the new position for the entity
+                entity.setPositionAndUpdate(newX, newY, newZ);
             }
         }
     }

@@ -1,5 +1,6 @@
 package net;
 
+import net.commands.IncreaseSP;
 import net.creativetabs.DemonCraftTab;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
@@ -11,6 +12,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.networking.Networking;
@@ -18,9 +20,9 @@ import net.proxy.ServerProxy;
 import net.util.capabilities.slayer.ISlayerCapability;
 import net.util.capabilities.slayer.IStorage;
 import net.util.capabilities.slayer.SlayerCapability;
+import net.util.capabilities.techniquecapability.ITechCapability;
 import net.util.capabilities.techniquecapability.ITechStorage;
 import net.util.capabilities.techniquecapability.TechCapability;
-import net.util.capabilities.techniquecapability.ITechCapability;
 import net.util.handlers.Reference;
 import net.util.handlers.RenderHandler;
 import net.world.Events;
@@ -71,6 +73,13 @@ public class DemonCraft
     public static void postInit(FMLPostInitializationEvent event) {
 
     }
+
+    @EventHandler
+    public void serverLoad(FMLServerStartingEvent event) {
+        // Register your custom command
+        event.registerServerCommand(new IncreaseSP());
+    }
+
     @SubscribeEvent
     static void listen(Event e){
 

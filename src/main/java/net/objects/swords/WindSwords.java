@@ -111,7 +111,7 @@ public class WindSwords extends ItemSword{
         else if ( player.getCapability(SlayerProvider.Breath_CAP, null).getMana()<= 24){
             player.sendMessage(new TextComponentString("You Have Run Out of Breath"));
         }
-        }else if (player.getCapability(SlayerProvider.Breath_CAP, null).getBreath() > 4 || player.getCapability(SlayerProvider.Breath_CAP, null).getBreath() < 4) {
+        }else if (player.getCapability(SlayerProvider.Breath_CAP, null).getBreath() > 5 || player.getCapability(SlayerProvider.Breath_CAP, null).getBreath() < 5) {
         player.sendMessage(new TextComponentString("You Have To Learn ")
         .appendSibling(new TextComponentString("Wind Breathing").setStyle(new Style().setColor(TextFormatting.GRAY)))
         .appendSibling(new TextComponentString(" To Use This Sword.")));

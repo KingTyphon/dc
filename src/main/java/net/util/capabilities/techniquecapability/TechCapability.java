@@ -8,6 +8,7 @@ public class TechCapability implements ITechCapability {
     private int strength;
     private int manaPoint;
     private int skill;
+    private int technique;
 
     @Override
     public int getSkill(){
@@ -42,6 +43,13 @@ public class TechCapability implements ITechCapability {
     public void setTech(int tech) {this.tech = tech;}
 
     @Override
+    public int getTechnique(){
+        return technique;
+    }
+    @Override
+    public void setTechnique(int technique){this.technique = technique;}
+
+    @Override
     public int getStrength(){
         return strength;
     }
@@ -73,7 +81,8 @@ public class TechCapability implements ITechCapability {
             case ("mana"):
                 setManaPoint(getManaPoint()+amount);
                 setSp(getSp()-amount);
-            case ("technique"):
+            case ("form"):
+                setTechnique(getTechnique()+amount);
                 setSp(getSp()-amount);
                 break;
             default:

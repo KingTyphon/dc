@@ -46,11 +46,11 @@ public class ItemInit {
     //Swords
     public static final Item mitsuri_sword = new LoveSwords("mitsuri" , TOOL_SCARLET_CRIMSON);
     public static final Item zenitsu_katana = new LightningSwords("zenitsu_blade" , TOOL_SCARLET_CRIMSON);
-    public static final Item tokito_sword = new ToolSword("tokito" , TOOL_SCARLET_CRIMSON);
-    public static final Item blade_tengen = new ToolSword("tengen_blade" , TOOL_SCARLET_CRIMSON);
+    public static final Item tokito_sword = new MistSwords("tokito" , TOOL_SCARLET_CRIMSON);
+    public static final Item blade_tengen = new SoundSwords("tengen_blade" , TOOL_SCARLET_CRIMSON);
     public static final Item dildo_sword = new CumBreathingSwords("sword_dildo", DILDO);
     public static final Item hashira_sword = new FireSwords("hashira" , TOOL_SCARLET_CRIMSON);
-    public static final Item tanjiro_sword = new ToolSword("tanjiro" , TOOL_SCARLET_CRIMSON);
+    public static final Item tanjiro_sword = new WaterSwords("tanjiro" , TOOL_SCARLET_CRIMSON);
     public static final Item katana_water = new WaterSwords("water_katana" , TOOL_SCARLET_CRIMSON);
     public static final Item blade_mist = new MistSwords("mist_blade" , TOOL_SCARLET_CRIMSON);
     public static final Item sword_fire = new FireSwords("fire_sword" , TOOL_SCARLET_CRIMSON);

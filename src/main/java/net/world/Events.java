@@ -108,13 +108,13 @@ public class Events {
             player.fallDistance = 0.0F;  // Set fall damage to 0 blocks
 
             // Set the base health to 40 (two rows of hearts)
-            player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(40.0+(3*healthPlayer));
+            player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(40.0+(2*healthPlayer));
 
             // Set attack damage to 6 (you can adjust this based on your requirements)
             player.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(6.0);
 
             // Set movement speed to 0.20D with the players speed attribute
-            player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.20D + (.03 * speedPlayer));
+            player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.20D + (.005 * speedPlayer));
             player.getEntityAttribute(SharedMonsterAttributes.ATTACK_SPEED).setBaseValue(4.0D + (.25 * speedPlayer));
 
         }

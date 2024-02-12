@@ -43,7 +43,7 @@ public class GuiSlayer extends GuiScreen {
         String health = Integer.toString(player.getCapability(TechProvider.TECH_CAP, null).getHealth());
         String speed = Integer.toString(player.getCapability(TechProvider.TECH_CAP, null).getSpeed());
         String breath = Integer.toString(player.getCapability(TechProvider.TECH_CAP, null).getManaPoint());
-        String technique = Integer.toString(player.getCapability(TechProvider.TECH_CAP, null).getTech());
+        String technique = Integer.toString(player.getCapability(TechProvider.TECH_CAP, null).getTechnique());
         String Xp = Integer.toString(player.getCapability(SlayerProvider.Breath_CAP, null).getXP());
         String strength = Integer.toString(player.getCapability(TechProvider.TECH_CAP, null).getStrength());
         String level =Integer.toString(player.getCapability(SlayerProvider.Breath_CAP, null).getLevel());
@@ -73,6 +73,8 @@ public class GuiSlayer extends GuiScreen {
 
         int breathNum = player.getCapability(SlayerProvider.Breath_CAP, null).getBreath();
 
+
+        //Depending on the
         switch(breathNum){
             case 1:
                 fontRenderer.drawString("Flame Breathing", centerX +110, centerY +50, 0);
@@ -139,15 +141,19 @@ public class GuiSlayer extends GuiScreen {
 
         //Upgrade Buttons for the Gui stat management
         for (int i = 0; i < UPGRADE_BUTTON_IDS.length; i++) {
-            this.addButton(new UpgradeButton(UPGRADE_BUTTON_IDS[i], centerX - 20, centerY + i * 25));
+            UpgradeButton button = new UpgradeButton(UPGRADE_BUTTON_IDS[i], centerX - 20, centerY + i * 25);
+            this.addButton(button);
+
+            // Set the button enabled state
+            button.enabled = true;
         }
-
-        this.addButton(new GuiButton(ID, centerX + guiWidth - 82, centerY + guiHeight - 20, 75, 20, "Skill Tree"));
-
+        GuiButton skillTree = new GuiButton(ID, centerX + guiWidth - 82, centerY + guiHeight - 20, 75, 20, "Skill Tree");
+        this.addButton(skillTree);
+        skillTree.enabled = true;
         super.initGui();
     }
 
-
+    //Button Action Corresponse
     @Override
     protected void actionPerformed(GuiButton button) throws IOException {
         //checks for the buttons
@@ -166,7 +172,8 @@ public class GuiSlayer extends GuiScreen {
                 if(player.getCapability(TechProvider.TECH_CAP,null).getSp() >0){
                 player.getCapability(TechProvider.TECH_CAP,null).upgradeStat("speed", 1);
                 player.getCapability(TechProvider.TECH_CAP,null).setSp(player.getCapability(TechProvider.TECH_CAP, null).getSp() - 1);
-                Networking.sendToServer(new Tech(player));}
+                Networking.sendToServer(new Tech(player));
+                }
                 break;
             case 3:
                 if(player.getCapability(TechProvider.TECH_CAP,null).getSp() >0){
