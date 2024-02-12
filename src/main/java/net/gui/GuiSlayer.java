@@ -34,6 +34,7 @@ public class GuiSlayer extends GuiScreen {
     @Override
     public void drawScreen(int mouseX, int mouseY, float partials) {
 
+
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         drawDefaultBackground();
         Minecraft.getMinecraft().renderEngine.bindTexture(texture);
@@ -54,7 +55,7 @@ public class GuiSlayer extends GuiScreen {
         drawTexturedModalRect(centerX, centerY, 0, 0, guiWidth, guiHeight);
         drawTexturedModalRect(centerX+166,centerY-29,200,0,40,32);
 
-        //Displays the users stats
+        //User Stats Labels for GUI
         drawHoveringText("Slayer Info", centerX+100,centerY+10);
         fontRenderer.drawString("Health: " + health, centerX+10, centerY+5, 0);
         fontRenderer.drawString("Speed: " + speed, centerX+10, centerY+30, 0);
@@ -70,11 +71,9 @@ public class GuiSlayer extends GuiScreen {
         fontRenderer.drawString(mana +"/" + maxMana, centerX + 110, centerY +60 ,0);
         fontRenderer.drawString("Lvl: " + level, centerX+ 10, centerY+145, 0);
 
-
+        //The Users Breathing Form.
         int breathNum = player.getCapability(SlayerProvider.Breath_CAP, null).getBreath();
 
-
-        //Depending on the
         switch(breathNum){
             case 1:
                 fontRenderer.drawString("Flame Breathing", centerX +110, centerY +50, 0);
@@ -124,13 +123,15 @@ public class GuiSlayer extends GuiScreen {
                 fontRenderer.drawString("Stone Breathing", centerX +110, centerY +50, 11448243);
                 break;
         }
-        super.drawScreen(mouseX, mouseY, partials);
+
         if(mouseX >= centerX+166 && mouseX <= centerX+ 206 && mouseY >= centerY-32 && mouseY <= centerY){
             List<String> text = new ArrayList<String>();
             text.add("CAW CAW CA-New Mission: Join The Discord!");
             text.add("CAW CAW CAW");
             drawHoveringText(text,mouseX, mouseY);
         }
+        super.drawScreen(mouseX, mouseY, partials);
+
     }
 
     @Override
@@ -140,16 +141,23 @@ public class GuiSlayer extends GuiScreen {
         int centerY = (height / 2) - guiHeight / 2;
 
         //Upgrade Buttons for the Gui stat management
+        if(player.getCapability(TechProvider.TECH_CAP, null).getSp() > 0){
+                   this.buttonList.clear();
+
         for (int i = 0; i < UPGRADE_BUTTON_IDS.length; i++) {
             UpgradeButton button = new UpgradeButton(UPGRADE_BUTTON_IDS[i], centerX - 20, centerY + i * 25);
+            // Set the button to enabled state
+            button.enabled = true;
             this.addButton(button);
 
-            // Set the button enabled state
-            button.enabled = true;
-        }
+
+        }}
+
         GuiButton skillTree = new GuiButton(ID, centerX + guiWidth - 82, centerY + guiHeight - 20, 75, 20, "Skill Tree");
-        this.addButton(skillTree);
         skillTree.enabled = true;
+        this.addButton(skillTree);
+
+
         super.initGui();
     }
 
@@ -164,39 +172,33 @@ public class GuiSlayer extends GuiScreen {
             case 1:
                 if(player.getCapability(TechProvider.TECH_CAP,null).getSp() >0){
                 player.getCapability(TechProvider.TECH_CAP,null).upgradeStat("health", 1);
-                player.getCapability(TechProvider.TECH_CAP,null).setSp(player.getCapability(TechProvider.TECH_CAP, null).getSp() - 1);
                 Networking.sendToServer(new Tech(player));
                 }
                 break;
             case 2:
                 if(player.getCapability(TechProvider.TECH_CAP,null).getSp() >0){
                 player.getCapability(TechProvider.TECH_CAP,null).upgradeStat("speed", 1);
-                player.getCapability(TechProvider.TECH_CAP,null).setSp(player.getCapability(TechProvider.TECH_CAP, null).getSp() - 1);
                 Networking.sendToServer(new Tech(player));
                 }
                 break;
             case 3:
                 if(player.getCapability(TechProvider.TECH_CAP,null).getSp() >0){
                 player.getCapability(TechProvider.TECH_CAP,null).upgradeStat("mana", 1);
-                player.getCapability(TechProvider.TECH_CAP,null).setSp(player.getCapability(TechProvider.TECH_CAP, null).getSp() - 1);
                 Networking.sendToServer(new Tech(player));}
                 break;
             case 4:
                 if(player.getCapability(TechProvider.TECH_CAP,null).getSp() >0){
                 player.getCapability(TechProvider.TECH_CAP,null).upgradeStat("strength", 1);
-                player.getCapability(TechProvider.TECH_CAP,null).setSp(player.getCapability(TechProvider.TECH_CAP, null).getSp() - 1);
                 Networking.sendToServer(new Tech(player));}
                 break;
             case 5:
                 if(player.getCapability(TechProvider.TECH_CAP,null).getSp() >0){
                 player.getCapability(TechProvider.TECH_CAP,null).upgradeStat("durability", 1);
-                player.getCapability(TechProvider.TECH_CAP,null).setSp(player.getCapability(TechProvider.TECH_CAP, null).getSp() - 1);
                 Networking.sendToServer(new Tech(player));}
                 break;
             case 6:
                 if(player.getCapability(TechProvider.TECH_CAP,null).getSp() >0){
                 player.getCapability(TechProvider.TECH_CAP,null).upgradeStat("technique", 1);
-                player.getCapability(TechProvider.TECH_CAP,null).setSp(player.getCapability(TechProvider.TECH_CAP, null).getSp() - 1);
                 Networking.sendToServer(new Tech(player));}
                 break;
             default:
